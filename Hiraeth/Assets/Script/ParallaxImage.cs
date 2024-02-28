@@ -7,6 +7,7 @@ public class ParallaxImage : MonoBehaviour
     public float speedX = 0;
     public int spawnCount = 2;
 
+<<<<<<< HEAD
     private Transform[] controlledTransforms;
     private float imageWidth;
 
@@ -22,6 +23,11 @@ public class ParallaxImage : MonoBehaviour
     
     }
 
+=======
+    private Transfrom[] controlledTransforms;
+    private float imageWidth;
+
+>>>>>>> Background
 
     public void CleanUpImage() { 
         if(controlledTransforms != null) {
