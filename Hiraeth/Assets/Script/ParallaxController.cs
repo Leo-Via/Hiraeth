@@ -10,6 +10,7 @@ public class ParallaxController : MonoBehaviour
         InitController();
     }
 
+<<<<<<< HEAD
     private void FixedUpdate() { 
         if(images != null)
         {
@@ -22,6 +23,8 @@ public class ParallaxController : MonoBehaviour
     }
 
 
+=======
+>>>>>>> Background
 
     private void InitController() {
         //List initialzed
