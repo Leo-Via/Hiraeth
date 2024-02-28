@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ParallaxController : MonoBehaviour
 {
+    public HorizontalDirection horizontalDirection;
+    public FloatReference speedMultiplier;
+
 
     private List<ParallaxImage> images;
 
@@ -16,9 +19,12 @@ public class ParallaxController : MonoBehaviour
     {
         if(images != null)
         {
-            foreach(var item in images)
+            if (horizontalDirection != HorizontalDirection.Fix)
             {
-                item.MoveX(Time.deltaTime);
+                foreach (var item in images)
+                {
+                    item.MoveX(Time.deltaTime);
+                }
             }
         }
     }
@@ -33,7 +39,7 @@ public class ParallaxController : MonoBehaviour
 
         foreach(var item in images)
         {
-            item.InitImage();
+            item.InitImage(speedMultiplier, horizontalDirection);
         }
     }
 
@@ -62,4 +68,19 @@ public class ParallaxController : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+
+public class FloatReference
+{
+    [Range(0.01f,5)]
+    public float value = 1;
+}
+
+public enum HorizontalDirection
+{
+    Fix,
+    Left,
+    Right,
 }
