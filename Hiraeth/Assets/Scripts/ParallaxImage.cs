@@ -23,7 +23,7 @@ public class ParallaxImage : MonoBehaviour
         moveBy = Mathf.Round(moveBy * roundFactor) / roundFactor;
 
 
-        for(int i = 0; i < controlledTransforms.Length; i++)
+        for (int i = 0; i < controlledTransforms.Length; i++)
         {
             Vector3 newPos = controlledTransforms[i].position;
             newPos.x -= moveBy;
@@ -32,10 +32,10 @@ public class ParallaxImage : MonoBehaviour
         }
         CheckAndReposition();
     }
-    
+
     private void CheckAndReposition()
     {
-        if(hDir  == HorizontalDirection.Left)
+        if (hDir == HorizontalDirection.Left)
         {
             for (int i = 1; i < controlledTransforms.Length; i++)
             {
@@ -47,7 +47,7 @@ public class ParallaxImage : MonoBehaviour
                 }
             }
         }
-        else if(hDir == HorizontalDirection.Right)
+        else if (hDir == HorizontalDirection.Right)
         {
             for (int i = 1; i < controlledTransforms.Length; i++)
             {
@@ -59,14 +59,14 @@ public class ParallaxImage : MonoBehaviour
                 }
             }
         }
-       
+
     }
 
     public void CleanUpImage()
     {
-        if(controlledTransforms != null)
+        if (controlledTransforms != null)
         {
-            for(int i = 1; i < controlledTransforms.Length; i++)
+            for (int i = 1; i < controlledTransforms.Length; i++)
             {
                 Destroy(controlledTransforms[i].gameObject);
             }
@@ -101,10 +101,10 @@ public class ParallaxImage : MonoBehaviour
         }
 
         float posX;
-        for(int i = 1; i < controlledTransforms.Length; i++)
+        for (int i = 1; i < controlledTransforms.Length; i++)
         {
             posX = transform.position.x + imageWidth * i;
-            if(hDir == HorizontalDirection.Right)
+            if (hDir == HorizontalDirection.Right)
             {
                 posX = transform.position.x - imageWidth * i;
             }
@@ -129,9 +129,9 @@ public class ParallaxImage : MonoBehaviour
         float currentMaxX = float.NegativeInfinity;
         Transform currentTransform = null;
 
-        for(int i = 0; i < controlledTransforms.Length; i++)
+        for (int i = 0; i < controlledTransforms.Length; i++)
         {
-            if(currentMaxX < controlledTransforms[i].position.x)
+            if (currentMaxX < controlledTransforms[i].position.x)
             {
                 currentMaxX = controlledTransforms[i].position.x;
                 currentTransform = controlledTransforms[i];

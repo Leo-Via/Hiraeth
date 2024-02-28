@@ -17,7 +17,7 @@ public class ParallaxController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(images != null)
+        if (images != null)
         {
             if (horizontalDirection != HorizontalDirection.Fix)
             {
@@ -37,7 +37,7 @@ public class ParallaxController : MonoBehaviour
         ScanForImages();
         //Init parallaxImage
 
-        foreach(var item in images)
+        foreach (var item in images)
         {
             item.InitImage(speedMultiplier, horizontalDirection);
         }
@@ -56,12 +56,12 @@ public class ParallaxController : MonoBehaviour
         }
     }
 
-    private  void ScanForImages()
+    private void ScanForImages()
     {
         ParallaxImage pi;
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
-            if(child.gameObject.activeSelf)
+            if (child.gameObject.activeSelf)
             {
                 pi = child.GetComponent<ParallaxImage>();
                 if (pi != null) images.Add(pi);
@@ -74,7 +74,7 @@ public class ParallaxController : MonoBehaviour
 
 public class FloatReference
 {
-    [Range(0.01f,5)]
+    [Range(0.01f, 5)]
     public float value = 1;
 }
 
