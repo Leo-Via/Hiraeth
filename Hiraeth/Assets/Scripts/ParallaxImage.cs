@@ -4,29 +4,82 @@ using UnityEngine;
 
 public class ParallaxImage : MonoBehaviour
 {
-    public float speedX = 0;
-    public int spawnCount = 2;
-    private const int roundFactor = 10000;
 
-    private Transform[] controlledTransforms;
+    //public 
+    public float speedX = 0;
+    public float speedY = 0;
+    public int spawnCount = 2;
+    public float repositionBuffer = .5f;
+
+    public ImageType imageType;
+    public InstanceModifier instanceModifier;
+
+    //private
+    private const int roundFactor = 1000;
+
+    private Vector3 startPos;
     private float imageWidth;
     private float minLeftX;
     private float maxRightX;
-    private FloatReference speedMultiplier;
-    private HorizontalDirection hDir;
+    private Transform[] controlledTransforms;
+    private SpriteRenderer sr;
 
-    public void MoveX(float moveBy)
+
+    private Movement vertical;
+    private Movement horizontal;
+
+
+    private void Awake()
     {
-        moveBy *= speedX * speedMultiplier.value;
-        if (hDir == HorizontalDirection.Right) moveBy *= -1;
+        sr = GetComponent<SpriteRenderer>();
+        startPos = transform.position;
+    }
 
-        moveBy = Mathf.Round(moveBy * roundFactor) / roundFactor;
+    public void RandomizeStartX()
+    {
+        MoveX(Random.Range(0, imageWidth), false);
+    }
+    public void RandomizeStartY()
+    {
+        MoveY(Random.Range(0, 1));
+    }
 
+    public void MoveY(float moveBy)
+    {
+        moveBy *= speedY * vertical.speedMultiplier;
+        if (vertical.direction == Direction.Negative) moveBy *= -1;
 
         for (int i = 0; i < controlledTransforms.Length; i++)
         {
             Vector3 newPos = controlledTransforms[i].position;
-            newPos.x -= moveBy;
+            newPos.y += moveBy;
+            controlledTransforms[i].position = newPos;
+        }
+    }
+
+    public void SetY(float y)
+    {
+        y *= speedY * vertical.speedMultiplier;
+        if (vertical.direction == Direction.Negative) y *= -1;
+
+        for (int i = 0; i < controlledTransforms.Length; i++)
+        {
+            Vector3 newPos = controlledTransforms[i].position;
+            newPos.y = y;
+            controlledTransforms[i].position = newPos;
+        }
+    }
+
+    public void MoveX(float moveBy, bool doSpeedCalc = true)
+    {
+        if (doSpeedCalc) moveBy *= speedX * horizontal.speedMultiplier;
+        if (horizontal.direction == Direction.Negative) moveBy *= -1;
+
+        moveBy = Mathf.Round(moveBy * roundFactor) / roundFactor;
+        for (int i = 0; i < controlledTransforms.Length; i++)
+        {
+            Vector3 newPos = controlledTransforms[i].position;
+            newPos.x += moveBy;
             newPos.x = Mathf.Round(newPos.x * roundFactor) / roundFactor;
             controlledTransforms[i].position = newPos;
         }
@@ -35,32 +88,33 @@ public class ParallaxImage : MonoBehaviour
 
     private void CheckAndReposition()
     {
-        if (hDir == HorizontalDirection.Left)
+        if (horizontal.direction == Direction.Negative || horizontal.type == MoveType.FollowTransform)
         {
-            for (int i = 1; i < controlledTransforms.Length; i++)
+            for (int i = 0; i < controlledTransforms.Length; i++)
             {
                 if (controlledTransforms[i].position.x < minLeftX)
                 {
                     Vector3 newPos = controlledTransforms[i].position;
-                    newPos.x -= GetRightmostTransform().position.x + imageWidth;
+                    newPos.x = GetRightmostTransform().position.x + imageWidth;
                     controlledTransforms[i].position = newPos;
                 }
             }
         }
-        else if (hDir == HorizontalDirection.Right)
+        if (horizontal.direction == Direction.Positive || horizontal.type == MoveType.FollowTransform)
         {
-            for (int i = 1; i < controlledTransforms.Length; i++)
+            for (int i = 0; i < controlledTransforms.Length; i++)
             {
                 if (controlledTransforms[i].position.x > maxRightX)
                 {
                     Vector3 newPos = controlledTransforms[i].position;
-                    newPos.x -= GetLeftmostTransform().position.x - imageWidth;
+                    newPos.x = GetLeftmostTransform().position.x - imageWidth;
                     controlledTransforms[i].position = newPos;
                 }
             }
         }
 
     }
+
 
     public void CleanUpImage()
     {
@@ -73,55 +127,108 @@ public class ParallaxImage : MonoBehaviour
         }
     }
 
-    public void InitImage(FloatReference speedMultiplier, HorizontalDirection hDir)
+    public void InitImage(Movement horizontal, Movement vertical)
     {
-        this.speedMultiplier = speedMultiplier;
-        this.hDir = hDir;
-        controlledTransforms = new Transform[spawnCount + 1];
+        this.horizontal = horizontal;
+        this.vertical = vertical;
+
+        transform.position = startPos;
+
+        PrepareVariables();
+
+        CreateImageInstances();
+
+        if (horizontal.randomizeStart) RandomizeStartX();
+        if (vertical.randomizeStart) RandomizeStartY();
+    }
+
+    private void PrepareVariables()
+    {
+        imageWidth = sr.bounds.size.x;
+        if (imageType == ImageType.Instance)
+        {
+            imageWidth += instanceModifier.spawnBuffer;
+        }
+        if (horizontal.type == MoveType.FollowTransform)
+        {
+            minLeftX = transform.position.x - imageWidth * (spawnCount + 1) - repositionBuffer;
+            maxRightX = transform.position.x + imageWidth * (spawnCount + 1) + repositionBuffer;
+
+        }
+        else
+        {
+            if (horizontal.direction == Direction.Negative)
+            {
+                minLeftX = transform.position.x - imageWidth - repositionBuffer;
+                maxRightX = float.PositiveInfinity;
+            }
+            else if (horizontal.direction == Direction.Positive)
+            {
+                maxRightX = transform.position.x + imageWidth + repositionBuffer;
+                minLeftX = float.NegativeInfinity;
+            }
+            else if (horizontal.direction == Direction.Fix)
+            {
+                minLeftX = float.NegativeInfinity;
+                maxRightX = float.PositiveInfinity;
+            }
+        }
+    }
+
+    private void CreateImageInstances()
+    {
+        int arraySize = spawnCount;
+        if (horizontal.type == MoveType.FollowTransform) arraySize *= 2;
+        arraySize += 1;
+
+        controlledTransforms = new Transform[arraySize];
         controlledTransforms[0] = transform;
 
-        imageWidth = GetComponent<SpriteRenderer>().bounds.size.x;
-
-        if (hDir == HorizontalDirection.Left)
+        float changeBy;
+        for (int i = 1; i <= spawnCount; i++)
         {
-            minLeftX = transform.position.x - imageWidth - 0.5f;
-            maxRightX = float.PositiveInfinity;
-
-        }
-        else if (hDir == HorizontalDirection.Right)
-        {
-            maxRightX = transform.position.x + imageWidth + 0.5f;
-            minLeftX = float.NegativeInfinity;
-
-        }
-        else if (hDir == HorizontalDirection.Fix)
-        {
-            minLeftX = float.NegativeInfinity;
-            maxRightX = float.PositiveInfinity;
-        }
-
-        float posX;
-        for (int i = 1; i < controlledTransforms.Length; i++)
-        {
-            posX = transform.position.x + imageWidth * i;
-            if (hDir == HorizontalDirection.Right)
+            if (horizontal.direction == Direction.Positive)
             {
-                posX = transform.position.x - imageWidth * i;
+                changeBy = -imageWidth * i;
             }
             else
             {
-                posX = transform.position.x + imageWidth * i;
+                changeBy = imageWidth * i;
             }
-            controlledTransforms[i] = PrepareCopyAt(posX);
+            if (imageType == ImageType.Instance && instanceModifier.spawnRandom)
+            {
+                changeBy += Random.Range(-instanceModifier.spawnRandomRange, instanceModifier.spawnRandomRange);
+            }
+
+            controlledTransforms[i] = PrepareCopyAt(transform.position.x + changeBy);
+            if (horizontal.type == MoveType.FollowTransform) controlledTransforms[i + spawnCount] = PrepareCopyAt(transform.position.x - changeBy);
         }
+
     }
 
     private Transform PrepareCopyAt(float posX)
     {
-        GameObject go = Instantiate(gameObject, new Vector3(posX, transform.position.y, transform.position.x), Quaternion.identity, transform.parent);
+        float posY = transform.position.y;
+        Vector3 localScale = transform.localScale;
+
+        if (imageType == ImageType.Instance && instanceModifier.scaleRandom)
+        {
+            localScale.x = Random.Range(1, instanceModifier.scaleRandomRange);
+            if (Random.value < .5f) localScale.x = 1 / localScale.x;
+            localScale.y = localScale.x;
+
+            if (instanceModifier.freezeYBottom)
+            {
+                posY = transform.position.y - (sr.bounds.size.y / 2) * ((transform.localScale.y - localScale.y) / transform.localScale.y);
+            }
+        }
+
+        GameObject go = Instantiate(gameObject, new Vector3(posX, posY, transform.position.z), Quaternion.identity, transform.parent);
         Destroy(go.GetComponent<ParallaxImage>());
+        go.transform.localScale = localScale;
 
         return go.transform;
+
     }
 
     private Transform GetRightmostTransform()
@@ -137,9 +244,9 @@ public class ParallaxImage : MonoBehaviour
                 currentTransform = controlledTransforms[i];
             }
         }
+
         return currentTransform;
     }
-
     private Transform GetLeftmostTransform()
     {
         float currentMinX = float.PositiveInfinity;
@@ -153,6 +260,33 @@ public class ParallaxImage : MonoBehaviour
                 currentTransform = controlledTransforms[i];
             }
         }
+
         return currentTransform;
     }
+
+}
+
+public enum ImageType
+{
+    Seamless,
+    Instance
+}
+
+
+[System.Serializable]
+public class InstanceModifier
+{
+    [Header("Only for ImageType Instances")]
+    public float spawnBuffer = 0;
+
+    public bool spawnRandom = false;
+    [Range(0, 5)]
+    public float spawnRandomRange = 0;
+
+    [Space]
+
+    public bool scaleRandom = false;
+    public bool freezeYBottom = true;
+    [Range(1, 4)]
+    public float scaleRandomRange = 1;
 }
