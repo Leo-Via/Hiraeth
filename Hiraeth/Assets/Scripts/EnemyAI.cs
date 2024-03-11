@@ -2,106 +2,134 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyAI : MonoBehaviour
 {
-    public Animator animator;
-    public Transform player;
-
-    public enum EnemyState
-    {
-        Idle,
-        Patrol,
-        Chase,
-        Attack
-    }
-
-    public float patrolSpeed = 2f;
-    public float chaseSpeed = 5f;
+    public float moveSpeed = 2f;
+    public float sightRange = 5f;
+    public float patrolRadius = 2f;
     public float attackRange = 2f;
-    public float detectionRadius = 10f;
+    public LayerMask playerLayer;
 
-    private EnemyState currentState = EnemyState.Idle;
+    public Transform target;
 
-    void Start()
+    private Vector2 startingPosition;
+    private Vector2 patrolDestination;
+    private EnemyAnimation enemyAnimator;
+    private EnemyAttack enemyAttack;
+
+    private bool isPatrolling = true;
+    private bool isChasing = false;
+    private bool isAttacking = false;
+
+    private void Awake()
     {
-        if (animator == null)
-            animator = GetComponent<Animator>();
-
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemyAnimator = GetComponent<EnemyAnimation>();
+        enemyAttack = GetComponent<EnemyAttack>();
+        startingPosition = transform.position;
+        SetNextPatrolDestination();
     }
 
-    void Update()
+    private void Update()
     {
-        switch (currentState)
+        if (isChasing)
         {
-            case EnemyState.Idle:
-                // Implement idle behavior (optional)
-                animator.SetBool("IsWalking", false); // Stop walking animation
-                break;
-            case EnemyState.Patrol:
-                Patrol();
-                break;
-            case EnemyState.Chase:
-                Chase();
-                break;
-            case EnemyState.Attack:
-                Attack();
-                break;
+            ChaseTarget();
+        }
+        else if (isPatrolling)
+        {
+            Patrol();
+        }
+        else if (isAttacking)
+        {
+            AttackTarget();
         }
     }
 
-    void Patrol()
+    private void ChaseTarget()
     {
-        // Implement patrol behavior (e.g., move between waypoints)
-        // Example: transform.Translate(Vector3.forward * patrolSpeed * Time.deltaTime);
+        bool isWalking = (target != null && Vector2.Distance(transform.position, target.position) > 0.1f);
+        enemyAnimator.SetWalkingAnimation(isWalking);
 
-        // Check if player is within detection range
-        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+        if (isWalking)
         {
-            currentState = EnemyState.Attack;
+            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         }
-        else if (Vector3.Distance(transform.position, player.position) <= detectionRadius)
+
+        if (Vector2.Distance(transform.position, target.position) <= attackRange)
         {
-            currentState = EnemyState.Chase;
+            isChasing = false;
+            isAttacking = true;
+        }
+    }
+
+    private void Patrol()
+    {
+        bool isWalking = (Vector2.Distance(transform.position, patrolDestination) > 0.1f);
+        enemyAnimator.SetWalkingAnimation(isWalking);
+
+        if (isWalking)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, patrolDestination, moveSpeed * Time.deltaTime);
         }
         else
         {
-            animator.SetBool("IsWalking", true); // Start walking animation
+            SetNextPatrolDestination();
+        }
+
+        if (Vector2.Distance(transform.position, target.position) <= sightRange)
+        {
+            isPatrolling = false;
+            isChasing = true;
         }
     }
 
-    void Chase()
+    private void AttackTarget()
     {
-        // Move towards the player
-        transform.LookAt(player);
-        transform.Translate(Vector3.forward * chaseSpeed * Time.deltaTime);
+        enemyAnimator.SetAttackingAnimation(true);
 
-        // Check if player is within attack range
-        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+        // Check for player within attack range
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
+        foreach (Collider2D player in hitPlayers)
         {
-            currentState = EnemyState.Attack;
+            // Attack the player
+            enemyAttack.AttackPlayer(player.gameObject);
+            enemyAnimator.PlayAttackAnimation();
+        }
+
+        // Reset the attack state after a short delay
+        Invoke("ResetAttackState", 1f);
+    }
+
+    private void ResetAttackState()
+    {
+        isAttacking = false;
+        enemyAnimator.SetAttackingAnimation(false);
+        if (Vector2.Distance(transform.position, target.position) <= sightRange)
+        {
+            isChasing = true;
         }
         else
         {
-            animator.SetBool("IsWalking", true); // Start walking animation
+            isPatrolling = true;
         }
     }
 
-    void Attack()
+    private void SetNextPatrolDestination()
     {
-        // Implement attack behavior (e.g., deal damage to the player)
-        // You may want to use a separate script for handling attack logic
+        Vector2 randomDirection = Random.insideUnitCircle * patrolRadius;
+        patrolDestination = startingPosition + randomDirection;
+    }
 
-        // Check if player is out of attack range
-        if (Vector3.Distance(transform.position, player.position) > attackRange)
-        {
-            currentState = EnemyState.Chase;
-        }
-        else
-        {
-            // Trigger attack animation
-            animator.SetTrigger("Attack");
-        }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, patrolRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

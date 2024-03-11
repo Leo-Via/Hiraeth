@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    public Transform attackPoint;
+    public LayerMask enemyLayers;
+
+    public float attackRange = 0.5f;
+    public int atttackDamage = 40;
+
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
+
     // Reference to the Animator component
     private Animator animator;
 
@@ -22,20 +31,23 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        // Check for player input to trigger attacks
-        if (Input.GetButtonDown("Fire1")) // Adjust "Fire1" to match your attack input button
+        if (Time.time >= nextAttackTime)
         {
-            if (!isComboActive)
+            if (Input.GetButtonDown("Fire1")) // Adjust "Fire1" to match your attack input button
             {
-                // Trigger the first attack animation
-                Attack();
-                isComboActive = true;
-            }
-            else
-            {
-                // Trigger the second attack animation
-                Attack2();
-                isComboActive = false; // Reset combo state after the second attack
+                if (!isComboActive)
+                {
+                    // Trigger the first attack animation
+                    Attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                    isComboActive = true;
+                }
+                else
+                {
+                    // Trigger the second attack animation
+                    Attack2();
+                    isComboActive = false; // Reset combo state after the second attack
+                }
             }
         }
     }
@@ -45,6 +57,24 @@ public class PlayerCombat : MonoBehaviour
     {
         // Trigger the first attack animation in the Animator
         animator.SetTrigger(attackTrigger);
+
+        // Detect enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        // Damage enemies
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemyHealth>().TakeDamage(atttackDamage);
+            Debug.Log("We hit " + enemy.name);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     // Function to trigger the second attack animation (combo)
