@@ -4,14 +4,22 @@ using UnityEngine;
 
 
 
+
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Adjust this value to change the movement speed
     public float jumpForce = 10f; // Adjust this value to change the jump force
 
+    const float groundCheckRadius = 0.2f;
+
+    bool isGrounded = false;
+
     private Rigidbody2D rb; // Reference to the Rigidbody2D component
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private Animator animator; // Reference to the Animator component
+
+    [SerializeField] Transform groundCheckCollider;
+    [SerializeField] LayerMask groundLayer;
 
     void Start()
     {
@@ -39,20 +47,11 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
+        // Set the yVelocity in the animator 
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
         // Set the 'Speed' parameter in the Animator based on movement speed
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-
-        // Check if the player is grounded (you can implement your own ground check logic here)
-        bool isGrounded = IsGrounded();
-
-        // Jump if the player is grounded and the jump button is pressed
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-
-            // Trigger the 'Jump' animation in the Animator
-            animator.SetTrigger("Jump");
-        }
 
         // Check if the player initiates an attack action
         if (Input.GetButtonDown("Fire1")) // Example: "Fire1" could be the attack button
@@ -64,39 +63,37 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Check if the player is falling
-        if (rb.velocity.y < 0 && !IsGrounded())
+        GroundCheck();
+
+        // Jump if the player is grounded and the jump button is pressed
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            // Trigger the fall animation
-            animator.SetBool("IsFalling", true);
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+            // Set 'IsJumping' parameter to true to transition to jump animation
+            animator.SetBool("IsJumping", true);
         }
 
         // Check if the player has landed after falling
-        if (rb.velocity.y <= 0 && IsGrounded())
+        if (rb.velocity.y <= 0 && isGrounded)
         {
-            // Reset the 'IsFalling' parameter in the Animator
-            animator.SetBool("IsFalling", false);
-
-            // Check if the player is moving horizontally
-            float horizontalInput = Input.GetAxis("Horizontal");
-            if (Mathf.Abs(horizontalInput) > 0.1f)
-            {
-                // Set the 'Speed' parameter in the Animator based on movement speed
-                animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-            }
-            else
-            {
-                // Reset the 'Speed' parameter in the Animator
-                animator.SetFloat("Speed", 0f);
-            }
+            // Reset the 'IsJumping' parameter in the Animator
+            animator.SetBool("IsJumping", false);
         }
     }
 
-    private bool IsGrounded()
+    void GroundCheck()
     {
-        // Implement your own ground check logic here
-        // For simplicity, we'll use a raycast below the player to check for ground
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f);
-        return hit.collider != null;
+        isGrounded = false;
+        // Check if the GroundCheckObject is colliding with other
+        // 2D Colliders that are in the "Ground" Layer
+        // If yes (isGrounded true) else (isGrounded false)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius, groundLayer);
+        if (colliders.Length > 0)
+            isGrounded = true;
+
+        // As long as we are grounded the "IsJumping" bool
+        // in animator is disabled 
+        animator.SetBool("IsJumping", !isGrounded);
     }
 }

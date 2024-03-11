@@ -1130,6 +1130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+  groundCheckCollider: {fileID: 1733568300}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1437280767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,7 +1273,7 @@ Transform:
   m_GameObject: {fileID: 1733568299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.074, y: -0.532, z: 0}
+  m_LocalPosition: {x: -0.0793, y: -0.5646, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1460,7 +1464,7 @@ GameObject:
   - component: {fileID: 1829020535}
   - component: {fileID: 1829020534}
   - component: {fileID: 1829020533}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4322,6 +4326,37 @@ MonoBehaviour:
     scaleRandom: 0
     freezeYBottom: 1
     scaleRandomRange: 1
+--- !u!1 &1920733125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920733126}
+  m_Layer: 0
+  m_Name: Attackpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920733126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920733125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.142, y: -0.258, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1437280758}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949081867
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,7 +4544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1974412871}
   - component: {fileID: 1974412870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4983,6 +5018,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1733568300}
+    - targetCorrespondingSourceObject: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1920733126}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       insertIndex: -1
