@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     public float moveSpeed = 5f; // Adjust this value to change the movement speed
     public float jumpForce = 10f; // Adjust this value to change the jump force
 
@@ -57,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             // Trigger the attack animation in the Animator
             animator.SetTrigger("Attack");
         }
+
     }
 
     void FixedUpdate()
@@ -70,6 +78,9 @@ public class PlayerMovement : MonoBehaviour
 
             // Set 'IsJumping' parameter to true to transition to jump animation
             animator.SetBool("IsJumping", true);
+
+            // Audio for attacking
+            audioManager.PlaySFX(audioManager.Jump);
         }
 
         // Check if the player has landed after falling

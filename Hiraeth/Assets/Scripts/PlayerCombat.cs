@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerCombat : MonoBehaviour
 {
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
@@ -58,6 +66,9 @@ public class PlayerCombat : MonoBehaviour
         // Trigger the first attack animation in the Animator
         animator.SetTrigger(attackTrigger);
 
+        // Audio for attacking
+        audioManager.PlaySFX(audioManager.Attack);
+
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -82,5 +93,8 @@ public class PlayerCombat : MonoBehaviour
     {
         // Trigger the second attack animation (combo) in the Animator
         animator.SetTrigger(attack2Trigger);
+
+        // Audio for attacking
+        audioManager.PlaySFX(audioManager.Attack);
     }
 }
