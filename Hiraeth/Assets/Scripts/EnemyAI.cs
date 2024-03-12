@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EnemyAI : MonoBehaviour
 {
     public float moveSpeed = 2f;
@@ -10,6 +9,9 @@ public class EnemyAI : MonoBehaviour
     public float patrolRadius = 2f;
     public float attackRange = 2f;
     public LayerMask playerLayer;
+
+    public float idleTime = 2f; // Time to idle before resuming patrolling
+    private float idleTimer = 0f; // Timer for idle state
 
     public Transform target;
 
@@ -49,10 +51,20 @@ public class EnemyAI : MonoBehaviour
     private void ChaseTarget()
     {
         bool isWalking = (target != null && Vector2.Distance(transform.position, target.position) > 0.1f);
-        enemyAnimator.SetWalkingAnimation(isWalking);
+        enemyAnimator.SetWalking(isWalking);
 
         if (isWalking)
         {
+            // Determine movement direction
+            Vector2 direction = (target.position - transform.position).normalized;
+
+            // Flip the enemy sprite along the x-axis based on movement direction
+            if (direction.x > 0)
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (direction.x < 0)
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+            // Move towards the target
             transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         }
 
@@ -66,7 +78,7 @@ public class EnemyAI : MonoBehaviour
     private void Patrol()
     {
         bool isWalking = (Vector2.Distance(transform.position, patrolDestination) > 0.1f);
-        enemyAnimator.SetWalkingAnimation(isWalking);
+        enemyAnimator.SetWalking(isWalking);
 
         if (isWalking)
         {
@@ -74,7 +86,18 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            SetNextPatrolDestination();
+            // If idle, wait for the idleTime duration before patrolling again
+            if (idleTimer <= 0)
+            {
+                SetNextPatrolDestination();
+                idleTimer = idleTime; // Reset the idle timer
+            }
+            else
+            {
+                idleTimer -= Time.deltaTime;
+                // Set the enemy to idle animation here
+                enemyAnimator.SetIdle(true);
+            }
         }
 
         if (Vector2.Distance(transform.position, target.position) <= sightRange)
@@ -86,7 +109,7 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget()
     {
-        enemyAnimator.SetAttackingAnimation(true);
+        enemyAnimator.SetAttacking(true);
 
         // Check for player within attack range
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
@@ -94,7 +117,7 @@ public class EnemyAI : MonoBehaviour
         {
             // Attack the player
             enemyAttack.AttackPlayer(player.gameObject);
-            enemyAnimator.PlayAttackAnimation();
+            enemyAnimator.SetAttacking(false);
         }
 
         // Reset the attack state after a short delay
@@ -104,7 +127,6 @@ public class EnemyAI : MonoBehaviour
     private void ResetAttackState()
     {
         isAttacking = false;
-        enemyAnimator.SetAttackingAnimation(false);
         if (Vector2.Distance(transform.position, target.position) <= sightRange)
         {
             isChasing = true;
