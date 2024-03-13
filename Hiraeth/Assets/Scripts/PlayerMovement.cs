@@ -9,7 +9,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+            if (audioManager == null)
+            {
+                Debug.LogError("AudioManager component not found on object with tag 'Audio'");
+            }
+        }
+        else
+        {
+            Debug.LogError("No GameObject with tag 'Audio' found in the scene");
+        }
     }
 
     public float moveSpeed = 5f; // Adjust this value to change the movement speed
@@ -37,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get the horizontal input axis (left/right)
         float horizontalInput = Input.GetAxis("Horizontal");
+        Debug.Log("Horizontal Input: " + horizontalInput);
 
         // Move the player horizontally
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
@@ -50,6 +63,29 @@ public class PlayerMovement : MonoBehaviour
         else if (horizontalInput > 0)
         {
             spriteRenderer.flipX = false;
+        }
+
+        // Check for jump input
+        if (Input.GetButtonDown("Jump"))
+        {
+            // Jump if the player is grounded
+            if (isGrounded)
+            {
+                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+                // Set 'IsJumping' parameter to true to transition to jump animation
+                animator.SetBool("IsJumping", true);
+
+                // Audio for jumping
+                audioManager.PlaySFX(audioManager.Jump);
+            }
+        }
+
+        // Check if the player has landed after falling
+        if (rb.velocity.y <= 0 && isGrounded)
+        {
+            // Reset the 'IsJumping' parameter in the Animator
+            animator.SetBool("IsJumping", false);
         }
 
         // Set the yVelocity in the animator 
@@ -70,25 +106,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         GroundCheck();
-
-        // Jump if the player is grounded and the jump button is pressed
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-
-            // Set 'IsJumping' parameter to true to transition to jump animation
-            animator.SetBool("IsJumping", true);
-
-            // Audio for attacking
-            audioManager.PlaySFX(audioManager.Jump);
-        }
-
-        // Check if the player has landed after falling
-        if (rb.velocity.y <= 0 && isGrounded)
-        {
-            // Reset the 'IsJumping' parameter in the Animator
-            animator.SetBool("IsJumping", false);
-        }
     }
 
     void GroundCheck()
@@ -101,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         if (colliders.Length > 0)
             isGrounded = true;
 
+        Debug.Log("Is Grounded: " + isGrounded);
         // As long as we are grounded the "IsJumping" bool
         // in animator is disabled 
         animator.SetBool("IsJumping", !isGrounded);
