@@ -65,9 +65,12 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
+        GroundCheck();
+
         // Check for jump input
         if (Input.GetButtonDown("Jump"))
         {
+            GroundCheck();
             // Jump if the player is grounded
             if (isGrounded)
             {
@@ -101,11 +104,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-    }
-
-    void FixedUpdate()
-    {
-        GroundCheck();
     }
 
     void GroundCheck()
