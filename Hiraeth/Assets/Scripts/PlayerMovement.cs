@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public float moveSpeed = 5f; // Adjust this value to change the movement speed
-    public float jumpForce = 10f; // Adjust this value to change the jump force
+    public float jumpForce = 15f; // Adjust this value to change the jump force
 
     const float groundCheckRadius = 0.2f;
 
@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 // Audio for jumping
                 audioManager.PlaySFX(audioManager.Jump);
             }
+
         }
 
         // Check if the player has landed after falling
