@@ -55,18 +55,16 @@ public class Teleporter : MonoBehaviour
             if(Vector2.Distance(dest.transform.position, GameObject.FindGameObjectWithTag("TeleporterEnd").transform.position) == 0.0){
                 if(Vector2.Distance(player.transform.position, transform.position) > minDist){
                     player.SetActive(false);
-                    player.transform.position = new Vector3(dest.transform.position.x - 7, dest.transform.position.y, dest.transform.position.z);
+                    player.transform.position = new Vector3(dest.transform.position.x - 3, dest.transform.position.y, dest.transform.position.z);
                     player.SetActive(true);
-                    isTeleporting = true;
                 }
             }
             //At the END teleporter
             else{
                 if(Vector2.Distance(player.transform.position, transform.position) > minDist){
                     player.SetActive(false);
-                    player.transform.position = new Vector3(dest.transform.position.x + 7, dest.transform.position.y, dest.transform.position.z);
+                    player.transform.position = new Vector3(dest.transform.position.x + 3, dest.transform.position.y, dest.transform.position.z);
                     player.SetActive(true);
-                    isTeleporting = true;
                 }
             }
         }
