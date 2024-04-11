@@ -625,11 +625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.44
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.88
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 7
   groundCheckCollider: {fileID: 801233480}
   groundLayer:
     serializedVersion: 2
@@ -1926,7 +1926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa442fb7b1418443987717fe803175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstep: {fileID: 0}
 --- !u!1 &1145104036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}

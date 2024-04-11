@@ -7,6 +7,7 @@ TagManager:
   - Audio
   - TeleporterStart
   - TeleporterEnd
+  - Ladder
   layers:
   - Default
   - TransparentFX
