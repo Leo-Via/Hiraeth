@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
             Die(); // Call the Die() method if the player has no health remaining
         }
     }
-    
+
     //Update is called once per frame
     void Update()
     {

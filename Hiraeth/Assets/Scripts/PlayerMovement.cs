@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public float moveSpeed = 5f; // Adjust this value to change the movement speed
-    public float jumpForce = 10f; // Adjust this value to change the jump force
+    public float jumpForce = 2f; // Adjust this value to change the jump force
 
     const float groundCheckRadius = 0.2f;
 
@@ -67,9 +67,12 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
+        GroundCheck();
+
         // Check for jump input
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical"))
         {
+            GroundCheck();
             // Jump if the player is grounded
             if (isGrounded)
             {
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
                 // Audio for jumping
                 audioManager.PlaySFX(audioManager.Jump);
             }
+
         }
 
         // Check if the player has landed after falling
@@ -103,11 +107,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-    }
-
-    void FixedUpdate()
-    {
-        GroundCheck();
     }
 
     void GroundCheck()

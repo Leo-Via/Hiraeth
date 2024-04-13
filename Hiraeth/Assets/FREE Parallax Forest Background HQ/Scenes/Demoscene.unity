@@ -2809,7 +2809,7 @@ RectTransform:
   m_Father: {fileID: 1511254783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.555, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5232,8 +5232,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 800851426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.555, y: 0}
+  m_AnchorMax: {x: 0.555, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7013,7 +7013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1924440284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7111,6 +7111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMixer: {fileID: 0}
   musicSlider: {fileID: 1242203341}
+  SFXSlider: {fileID: 0}
 --- !u!1 &2060525023
 GameObject:
   m_ObjectHideFlags: 0
