@@ -548,7 +548,7 @@ Transform:
   m_GameObject: {fileID: 190120048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.120000236, y: -4.674, z: -10}
+  m_LocalPosition: {x: 36.48, y: -2.944, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1490,11 +1490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: 36.48
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.15
+      value: -4.42
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3163,14 +3163,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  sightRange: 3
-  patrolRadius: 13
+  detectionRange: 5
   attackRange: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  idleTime: 2
-  target: {fileID: 1135513122}
+  patrolPoints: []
+  patrolSpeed: 2
+  patrolWaitTime: 5
+  reachThreshold: 0.2
+  enemyAnimation: {fileID: 0}
 --- !u!114 &1145104040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8977,7 +8979,7 @@ Transform:
   m_GameObject: {fileID: 1742152389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.120000236, y: -4.674, z: -10}
+  m_LocalPosition: {x: 36.48, y: -2.944, z: -10}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

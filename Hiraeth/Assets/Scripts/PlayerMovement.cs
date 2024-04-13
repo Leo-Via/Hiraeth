@@ -49,7 +49,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get the horizontal input axis (left/right)
         float horizontalInput = Input.GetAxis("Horizontal");
-        Debug.Log("Horizontal Input: " + horizontalInput);
+
+        // Get the vertical input axis (up/down)
+        float verticalInput = Input.GetAxis("Vertical");
 
         // Move the player horizontally
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Check for jump input
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical"))
         {
             // Jump if the player is grounded
             if (isGrounded)
@@ -118,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         if (colliders.Length > 0)
             isGrounded = true;
 
-        Debug.Log("Is Grounded: " + isGrounded);
+        //Debug.Log("Is Grounded: " + isGrounded);
         // As long as we are grounded the "IsJumping" bool
         // in animator is disabled 
         animator.SetBool("IsJumping", !isGrounded);

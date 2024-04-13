@@ -4,51 +4,60 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public float attackRange = 2f; // Range within which the enemy can attack
-    public float attackDamage = 10f; // Damage inflicted by the enemy's attack
-    public LayerMask playerLayer; // Layer containing the player GameObject
+    public float attackRange = 2f;
+    public float attackDamage = 10f;
+    public LayerMask playerLayer;
 
-    private bool isAttacking = false; // Flag to track if the enemy is currently attacking
+    private bool isAttacking = false;
+    private Coroutine attackCooldownCoroutine;
+    private EnemyAnimation enemyAnimation; // Reference to the enemy's animation script
+
+    void Start()
+    {
+        enemyAnimation = GetComponent<EnemyAnimation>(); // Get the reference to the EnemyAnimation script
+    }
 
     void Update()
     {
-        // Check for player within attack range
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
-
-        foreach (Collider2D player in hitPlayers)
+        // Only check for player presence if the enemy is not already attacking
+        if (!isAttacking)
         {
-            // Attack the player
-            AttackPlayer(player.gameObject);
+            Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
+
+            foreach (Collider2D player in hitPlayers)
+            {
+                AttackPlayer(player.gameObject);
+            }
         }
     }
 
     public void AttackPlayer(GameObject player)
     {
-        // Ensure the enemy is not already attacking
-        if (!isAttacking)
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
         {
-            // Deal damage to the player
-            // Assuming there's a health component on the player GameObject
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackDamage);
-            }
-
-            // Set a cooldown for the attack to prevent rapid attacks
-            isAttacking = true;
-            Invoke("ResetAttack", 1f); // Adjust the cooldown time as needed
+            playerHealth.TakeDamage(attackDamage);
+            StartAttackCooldown();
+            enemyAnimation.Attack();
         }
     }
 
-    void ResetAttack()
+    void StartAttackCooldown()
     {
+        isAttacking = true;
+        if (attackCooldownCoroutine != null)
+            StopCoroutine(attackCooldownCoroutine);
+        attackCooldownCoroutine = StartCoroutine(AttackCooldown());
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(1f); // Adjust cooldown time as needed
         isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Visualize the attack range in the Unity editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }

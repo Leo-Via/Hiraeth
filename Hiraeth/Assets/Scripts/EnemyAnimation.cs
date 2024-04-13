@@ -6,51 +6,34 @@ public class EnemyAnimation : MonoBehaviour
 {
     private Animator animator;
 
-    // Animator parameters
-    private static readonly string IsWalking = "IsWalking";
-    private static readonly string IsAttacking = "IsAttacking";
-    private static readonly string IsHit = "IsHit";
-    private static readonly string IsDead = "IsDead";
-    private static readonly string IsIdle = "IsIdle";
+    private static readonly string SpeedParameter = "Velocity";
+    private static readonly string IsAttackingParameter = "IsAttacking";
+    private static readonly string IsHitParameter = "IsHurt";
+    private static readonly string IsDeadParameter = "IsDead";
 
-    void Start()
+    private void Start()
     {
-        // Get the Animator component attached to the enemy
         animator = GetComponent<Animator>();
-        Debug.Log("Animator: " + animator);
     }
 
-    public void SetWalking(bool isWalking)
+    public void SetSpeed(float speed)
     {
-        // Set the IsWalking parameter in the animator
-        animator.SetBool(IsWalking, isWalking);
-        SetIdle(!isWalking); // Set idle based on walking state
+        animator.SetFloat(SpeedParameter, speed);
     }
 
-    public void SetAttacking(bool isAttacking)
+    public void Attack()
     {
-        Debug.Log("SetAttacking: " + isAttacking);
-        // Set the IsAttacking parameter in the animator
-        animator.SetBool(IsAttacking, isAttacking);
-        SetIdle(false); // If attacking, not idle
+        animator.SetBool(IsAttackingParameter, true);
     }
 
-    public void SetHit(bool isHit)
+    public void GetHit()
     {
-        // Set the IsHit parameter in the animator
-        animator.SetBool(IsHit, isHit);
-        SetIdle(false); // If hit, not idle
+        animator.SetTrigger(IsHitParameter);
     }
 
-    public void SetDead(bool isDead)
+    public void Die()
     {
-        // Set the IsDead parameter in the animator
-        animator.SetBool(IsDead, isDead);
-        SetIdle(false); // If dead, not idle
-    }
-
-    public void SetIdle(bool isIdle)
-    {
-        animator.SetBool(IsIdle, isIdle);
+        animator.SetBool(IsDeadParameter, true);
     }
 }
+

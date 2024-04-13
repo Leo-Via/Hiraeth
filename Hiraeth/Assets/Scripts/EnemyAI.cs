@@ -5,153 +5,235 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public float moveSpeed = 2f;
-    public float sightRange = 5f;
-    public float patrolRadius = 2f;
-    public float attackRange = 2f;
+    public float detectionRange = 5f;
+    public float attackRange = 1f;
     public LayerMask playerLayer;
 
-    public float idleTime = 2f; // Time to idle before resuming patrolling
-    private float idleTimer = 0f; // Timer for idle state
+    [Header("Ground Check")]
+    public Transform groundCheck; // Assign the ground check transform in the Inspector
+    public float groundCheckDistance = 0.1f; // Distance to cast the ground check ray
+    public LayerMask groundLayer; // Layer mask for the ground objects
 
-    public Transform target;
 
-    private Vector2 startingPosition;
-    private Vector2 patrolDestination;
-    private EnemyAnimation enemyAnimator;
+    [Header("Patrol Settings")]
+    public Transform[] patrolPoints;
+    public float patrolSpeed = 2.0f; // Adjust as needed
+    public float patrolWaitTime = 5.0f; // Time to wait at each patrol point
+    public float reachThreshold = 0.2f; // Distance threshold to reach a patrol point
+
+    private int currentPatrolPointIndex = 0;
+    private bool isPatrolling = false;
+    private float patrolTimer = 0.0f;
+    private bool isWaiting = false;
+    private Vector3 targetPatrolPoint;
+    private bool shouldFlip = false;
+
     private EnemyAttack enemyAttack;
+    public EnemyAnimation enemyAnimation;
 
-    private bool isPatrolling = true;
-    private bool isChasing = false;
-    private bool isAttacking = false;
+    private Transform player;
+    private Rigidbody2D rb;
+    private Animator animator;
 
-    private void Awake()
+    private void Start()
     {
-        enemyAnimator = GetComponent<EnemyAnimation>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
+        enemyAnimation = GetComponent<EnemyAnimation>();
         enemyAttack = GetComponent<EnemyAttack>();
-        startingPosition = transform.position;
-        SetNextPatrolDestination();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (isChasing)
-        {
-            ChaseTarget();
+        // Perform ground check
+        bool isGrounded = GroundCheck();
+
+        if (isGrounded)
+        { 
+            if (CanSeePlayer())
+            {
+                // Chase or attack player if in range
+                if (DistanceToPlayer() <= attackRange)
+                {
+                    AttackPlayer();
+                }
+                else
+                {
+                    ChasePlayer();
+                }
+            }
+            else
+            {
+                // Do something when player is not in sight
+                // If not in sight of the player
+                if (!isPatrolling)
+                {
+                    // Start patrolling
+                    StartPatrol();
+                }
+                else
+                {
+                    // Continue patrolling
+                    Patrol();
+                }
+            }
         }
-        else if (isPatrolling)
+        else
         {
-            Patrol();
-        }
-        else if (isAttacking)
-        {
-            AttackTarget();
+            // Handle behavior when not grounded (e.g., stop movement, adjust position)
+            rb.velocity = Vector2.zero;
         }
     }
 
-    private void ChaseTarget()
+    private bool GroundCheck()
     {
-        bool isWalking = (target != null && Vector2.Distance(transform.position, target.position) > 0.1f);
-        enemyAnimator.SetWalking(isWalking);
+        // Cast a ray downward to check for ground
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
 
-        if (isWalking)
+        // If the ray hits something on the ground layer
+        if (hit.collider != null)
         {
-            // Determine movement direction
-            Vector2 direction = (target.position - transform.position).normalized;
+            // Uncomment the line below for debugging purposes
+            Debug.Log("Grounded");
+            return true;
+        }
+        else
+        {
+            // Uncomment the line below for debugging purposes
+            Debug.Log("Not Grounded");
+            return false;
+        }
+    }
 
-            // Flip the enemy sprite along the x-axis based on movement direction
-            if (direction.x > 0)
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            else if (direction.x < 0)
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    private bool CanSeePlayer()
+    {
+        // Implement your logic to check if the player is in sight
+        // For example, you can use Physics2D.Raycast or Physics2D.OverlapCircle
+        // Here's a simple example using Physics2D.OverlapCircle
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRange, playerLayer);
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-            // Move towards the target
-            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+    private void ChasePlayer()
+    {
+        // Move towards the player
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.velocity = direction * moveSpeed;
+
+        // Flip the enemy sprite if needed
+        if (direction.x > 0)
+        {
+            // If the player is to the right, flip the sprite to face right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (direction.x < 0)
+        {
+            // If the player is to the left, flip the sprite to face left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        if (Vector2.Distance(transform.position, target.position) <= attackRange)
-        {
-            isChasing = false;
-            isAttacking = true;
-        }
+        // Update the animation speed
+        enemyAnimation.SetSpeed(moveSpeed);
+    }
+
+    private void AttackPlayer()
+    {
+        enemyAttack.AttackPlayer(player.gameObject);
+    }
+
+    private void StartPatrol()
+    {
+        // Set the initial patrol point index
+        currentPatrolPointIndex = 0;
+        isPatrolling = true;
+        targetPatrolPoint = patrolPoints[currentPatrolPointIndex].position;
+        enemyAnimation.SetSpeed(patrolSpeed); // Reset the animation speed
     }
 
     private void Patrol()
     {
-        bool isWalking = (Vector2.Distance(transform.position, patrolDestination) > 0.1f);
-        enemyAnimator.SetWalking(isWalking);
-
-        if (isWalking)
+        if (!isWaiting)
         {
-            transform.position = Vector2.MoveTowards(transform.position, patrolDestination, moveSpeed * Time.deltaTime);
+            // Move towards the target patrol point
+            transform.position = Vector3.MoveTowards(transform.position, targetPatrolPoint, patrolSpeed * Time.deltaTime);
+
+            // Flip the enemy sprite to face the target patrol point
+            FlipSprite((targetPatrolPoint - transform.position).normalized.x);
+
+            // Update the animation speed
+            enemyAnimation.SetSpeed(patrolSpeed);
+
+            // Check if we're close enough to the current patrol point
+            if (Vector3.Distance(transform.position, targetPatrolPoint) <= reachThreshold)
+            {
+                // Start waiting at the current patrol point
+                isWaiting = true;
+                patrolTimer = 0.0f;
+                enemyAnimation.SetSpeed(0f); // Set the animation speed to 0 when waiting
+            }
         }
         else
         {
-            // If idle, wait for the idleTime duration before patrolling again
-            if (idleTimer <= 0)
+            // Wait at the current patrol point
+            patrolTimer += Time.deltaTime;
+            enemyAnimation.SetSpeed(0f); // Keep the animation speed at 0 while waiting
+            if (patrolTimer >= patrolWaitTime)
             {
-                SetNextPatrolDestination();
-                idleTimer = idleTime; // Reset the idle timer
+                // Update the target patrol point to the next one
+                currentPatrolPointIndex++;
+                if (currentPatrolPointIndex >= patrolPoints.Length)
+                {
+                    currentPatrolPointIndex = 0;
+                }
+                targetPatrolPoint = patrolPoints[currentPatrolPointIndex].position;
+
+                isWaiting = false;
+                shouldFlip = true;
             }
-            else
-            {
-                idleTimer -= Time.deltaTime;
-                // Set the enemy to idle animation here
-                enemyAnimator.SetIdle(true);
-            }
         }
 
-        if (Vector2.Distance(transform.position, target.position) <= sightRange)
+
+    }
+
+    private void FlipSprite(float directionX)
+    {
+        // Flip the enemy sprite along the x-axis based on the movement direction
+        // Only flip if the shouldFlip flag is set
+        if (shouldFlip || directionX < 0)
         {
-            isPatrolling = false;
-            isChasing = true;
+            transform.localScale = new Vector3(directionX >= 0 ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            shouldFlip = false;
+            enemyAnimation.SetSpeed(patrolSpeed); // Update the animation speed
         }
     }
 
-    private void AttackTarget()
+    private float DistanceToPlayer()
     {
-        enemyAnimator.SetAttacking(true);
-
-        // Check for player within attack range
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
-        foreach (Collider2D player in hitPlayers)
-        {
-            // Attack the player
-            enemyAttack.AttackPlayer(player.gameObject);
-            enemyAnimator.SetAttacking(false);
-        }
-
-        // Reset the attack state after a short delay
-        Invoke("ResetAttackState", 1f);
-    }
-
-    private void ResetAttackState()
-    {
-        isAttacking = false;
-        if (Vector2.Distance(transform.position, target.position) <= sightRange)
-        {
-            isChasing = true;
-        }
-        else
-        {
-            isPatrolling = true;
-        }
-    }
-
-    private void SetNextPatrolDestination()
-    {
-        Vector2 randomDirection = Random.insideUnitCircle * patrolRadius;
-        patrolDestination = startingPosition + randomDirection;
+        return Vector2.Distance(transform.position, player.position);
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, patrolRadius);
+        // Draw a wire sphere to represent the detection range for the enemy
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        // Draw the patrol points
+        if (patrolPoints != null && patrolPoints.Length > 0)
+        {
+            Gizmos.color = Color.yellow;
+            foreach (Transform point in patrolPoints)
+            {
+                Gizmos.DrawSphere(point.position, 0.2f);
+            }
+        }
     }
 }
