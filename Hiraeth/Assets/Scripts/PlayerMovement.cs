@@ -9,19 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
-        if (audioObject != null)
-        {
-            audioManager = audioObject.GetComponent<AudioManager>();
-            if (audioManager == null)
-            {
-                Debug.LogError("AudioManager component not found on object with tag 'Audio'");
-            }
-        }
-        else
-        {
-            Debug.LogError("No GameObject with tag 'Audio' found in the scene");
-        }
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public float moveSpeed = 5f; // Adjust this value to change the movement speed

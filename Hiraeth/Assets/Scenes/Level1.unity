@@ -19622,6 +19622,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: TreeAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: f8a208a138c40a94e9b3e93abfaf593c, type: 3}
+    - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: RunningOnGrass
       value: 
       objectReference: {fileID: 8300000, guid: 010c14960a3b88043be4b3de9bbff075, type: 3}

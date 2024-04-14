@@ -7,6 +7,26 @@ public class EnemyAttack : MonoBehaviour
     public float attackRange = 2f; // Range within which the enemy can attack
     public float attackDamage = 10f; // Damage inflicted by the enemy's attack
     public LayerMask playerLayer; // Layer containing the player GameObject
+    
+    AudioManager audioManager;
+    private void Awake()
+    {
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+            if (audioManager == null)
+            {
+                Debug.LogError("AudioManager component not found on object with tag 'Audio'");
+            }
+        }
+        else
+        {
+            Debug.LogError("No GameObject with tag 'Audio' found in the scene");
+        }
+    }
+
+
 
     private bool isAttacking = false; // Flag to track if the enemy is currently attacking
 
@@ -38,6 +58,8 @@ public class EnemyAttack : MonoBehaviour
             // Set a cooldown for the attack to prevent rapid attacks
             isAttacking = true;
             Invoke("ResetAttack", 1f); // Adjust the cooldown time as needed
+            audioManager.PlaySFX(audioManager.TreeAttack);
+
         }
     }
 
