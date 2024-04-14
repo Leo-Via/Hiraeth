@@ -12,7 +12,7 @@ public class PlayerPos : MonoBehaviour
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<LastCheckPoint>();
-        hp = GetComponent<PlayerHealth>(); // Use GetComponent<PlayerHealth>() to get the PlayerHealth component attached to this GameObject
+        hp = GetComponent<PlayerHealth>();
         transform.position = gm.lastCheckPointPos;
     }
 
