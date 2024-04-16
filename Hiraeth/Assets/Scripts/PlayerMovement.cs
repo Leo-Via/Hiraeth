@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isWalled(){
         if(Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer)){
             walledLeft = true;
-            wall = Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer)
+            wall = Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer);
         }
         if(Physics2D.OverlapCircle(wallCheckRight.position, 0.2f, wallLayer)){
             walledRight = true;
