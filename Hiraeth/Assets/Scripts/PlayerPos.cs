@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerPos : MonoBehaviour
+public class PlayerPos : MonoBehaviour, IDataPersistence
 {
     private LastCheckPoint gm;
     private PlayerHealth hp;
@@ -15,6 +15,16 @@ public class PlayerPos : MonoBehaviour
         hp = GetComponent<PlayerHealth>();
         transform.position = gm.lastCheckPointPos;
     }
+ 
+	public void LoadData(GameData data)
+	{
+		this.gm.lastCheckPointPos = data.playerPosition;
+	}
+
+	public void SaveData(GameData data)
+	{
+		data.playerPosition = this.gm.lastCheckPointPos;
+	}
 
 
     // Update is called once per frame

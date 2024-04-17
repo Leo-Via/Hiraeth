@@ -1175,7 +1175,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1808,7 +1808,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335218, y: -0.000007054303}
+  m_ConnectedAnchor: {x: 0.30335218, y: -0.0000070901588}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -5650,6 +5650,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71f05eb19a2c843b420ef9e953b107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallCheckLeft: {fileID: 0}
+  wallCheckRight: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
   moveSpeed: 5
   jumpForce: 7
   groundCheckCollider: {fileID: 801233480}
@@ -6584,7 +6589,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6904,6 +6909,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1415520784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3479610188151490874, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_Name
+      value: DataPersistanceManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479610188151490874, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348954071681345681, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: autoSaveTimeSeconds
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
 --- !u!1 &1437454589
 GameObject:
   m_ObjectHideFlags: 0
@@ -18729,7 +18799,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335313, y: -0.0000070780516}
+  m_ConnectedAnchor: {x: 0.30335313, y: -0.0000071139075}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -19969,3 +20039,4 @@ SceneRoots:
   - {fileID: 460898964}
   - {fileID: 555217837}
   - {fileID: 149341462}
+  - {fileID: 1415520784}

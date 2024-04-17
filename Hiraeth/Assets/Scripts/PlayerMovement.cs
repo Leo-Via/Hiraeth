@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component attached to the player
         animator = GetComponent<Animator>(); // Get the Animator component attached to the player
     }
-
+   
     void Update()
     {
         // Get the horizontal input axis (left/right)
