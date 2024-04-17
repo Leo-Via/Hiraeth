@@ -1750,7 +1750,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6445,7 +6445,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.39291298, y: -0.0000011026859}
+  m_ConnectedAnchor: {x: 0.39291298, y: -0.0000011492521}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7743,7 +7743,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -554979022, guid: 198c5cf9dad20144995fd44cf395c218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7863,7 +7863,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.37563765, y: 0.0000035781404}
+  m_ConnectedAnchor: {x: 0.37563765, y: 0.000003533437}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -9674,7 +9674,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.3924681, y: 0.000011913477}
+  m_ConnectedAnchor: {x: 0.39246807, y: 0.00001195818}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -25865,12 +25865,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b21bf56d3c89842b06bb9cfc31c552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   attackPoint: {fileID: 640543657}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
   attackRange: 0.5
-  atttackDamage: 40
+  attackDamage: 40
   attackRate: 2
 --- !u!114 &1135513125
 MonoBehaviour:
@@ -25884,17 +25885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71f05eb19a2c843b420ef9e953b107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCheckLeft: {fileID: 0}
-  wallCheckRight: {fileID: 0}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  moveSpeed: 5
-  jumpForce: 7
-  groundCheckCollider: {fileID: 801233480}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!50 &1135513126
 Rigidbody2D:
   serializedVersion: 4
@@ -26013,137 +26003,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5f31af95c7ce29419fba83a0e68908a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1145104036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-  m_PrefabInstance: {fileID: 1778493585}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &1145104037
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145104036}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0069151563, y: 0.029337686}
-  m_Size: {x: 0.54048675, y: 0.6523827}
-  m_Direction: 0
---- !u!50 &1145104038
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145104036}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1145104039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145104036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f981461a261244381f89aface04378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  sightRange: 3
-  patrolRadius: 13
-  attackRange: 2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  idleTime: 2
-  target: {fileID: 1135513122}
---- !u!114 &1145104040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145104036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd937b1b37f08ee488af484654cd837d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
---- !u!114 &1145104041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145104036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fbdbd4ae7414f4ebb29efcbb1fccdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 2
-  attackDamage: 10
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!114 &1145104042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145104036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b31cddff6d32464ead6e08701148da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1150419270
@@ -26479,7 +26338,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300110, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 0.35386252, g: 0.49777505, b: 0.5283019, a: 1}
@@ -26830,7 +26689,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -872515951, guid: 7370ff9939d3f764694abb40009e2284, type: 3}
   m_Color: {r: 0.73899364, g: 0.86042887, b: 1, a: 1}
@@ -27256,7 +27115,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -554979022, guid: 198c5cf9dad20144995fd44cf395c218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27640,7 +27499,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300110, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 0.35386252, g: 0.49777505, b: 0.5283019, a: 1}
@@ -28002,7 +27861,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300110, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 0.35386252, g: 0.49777505, b: 0.5283019, a: 1}
@@ -28603,7 +28462,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335265, y: -0.000007102266}
+  m_ConnectedAnchor: {x: 0.30335265, y: -0.0000070659444}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -29069,7 +28928,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1784656370, guid: 198c5cf9dad20144995fd44cf395c218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31098,7 +30957,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1784656370, guid: 198c5cf9dad20144995fd44cf395c218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31647,7 +31506,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -872515951, guid: 7370ff9939d3f764694abb40009e2284, type: 3}
   m_Color: {r: 0.73899364, g: 0.86042887, b: 1, a: 1}
@@ -31803,7 +31662,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1784656370, guid: 198c5cf9dad20144995fd44cf395c218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31968,7 +31827,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.33010128, y: 0.000018727034}
+  m_ConnectedAnchor: {x: 0.33010128, y: 0.00001876615}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -32001,28 +31860,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.4464836
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.4464836
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.4464836
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.7
+      value: 49.79
       objectReference: {fileID: 0}
     - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.6
+      value: 13.71
       objectReference: {fileID: 0}
     - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32060,36 +31903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree Mob
       objectReference: {fileID: 0}
-    - target: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922671169208235993, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1145104038}
-    - targetCorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1145104037}
-    - targetCorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1145104039}
-    - targetCorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1145104040}
-    - targetCorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1145104041}
-    - targetCorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1145104042}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
 --- !u!1 &1808107916
 GameObject:
@@ -32424,7 +32241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 222176533
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300110, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 0.35386252, g: 0.49777505, b: 0.5283019, a: 1}
@@ -32532,7 +32349,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.32216376, y: 0.000004805625}
+  m_ConnectedAnchor: {x: 0.3221638, y: 0.000004842878}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

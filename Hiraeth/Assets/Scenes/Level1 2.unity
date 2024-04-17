@@ -1912,12 +1912,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b21bf56d3c89842b06bb9cfc31c552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   attackPoint: {fileID: 640543657}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
   attackRange: 0.5
-  atttackDamage: 40
+  attackDamage: 40
   attackRate: 2
 --- !u!114 &1135513125
 MonoBehaviour:
@@ -1931,12 +1932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71f05eb19a2c843b420ef9e953b107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 7
-  groundCheckCollider: {fileID: 801233480}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!50 &1135513126
 Rigidbody2D:
   serializedVersion: 4
@@ -2125,14 +2120,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  sightRange: 3
-  patrolRadius: 13
+  detectionRange: 5
   attackRange: 2
   playerLayer:
     serializedVersion: 2
-    m_Bits: 256
-  idleTime: 2
-  target: {fileID: 1135513122}
+    m_Bits: 0
+  groundCheck: {fileID: 0}
+  groundCheckDistance: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  patrolPoints: []
+  patrolSpeed: 2
+  patrolWaitTime: 5
+  reachThreshold: 0.2
+  enemyAnimation: {fileID: 0}
 --- !u!114 &1145104040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2145,6 +2147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd937b1b37f08ee488af484654cd837d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  enemyAnimation: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
 --- !u!114 &1145104041
@@ -2163,7 +2167,7 @@ MonoBehaviour:
   attackDamage: 10
   playerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!114 &1145104042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17006,11 +17010,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.2
+      value: 57.02
       objectReference: {fileID: 0}
     - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.5
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 5240627280215370472, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_LocalPosition.z

@@ -173,7 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea8143e74a72ba46afc924a63043019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 58456776}
+  fallDelay: 0
+  respawnTime: 0
 --- !u!251 &58456774
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -1463,7 +1464,7 @@ Transform:
   m_GameObject: {fileID: 190120048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 134, y: 25.776001, z: -10}
+  m_LocalPosition: {x: -14.290001, y: -5.5839996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1867,11 +1868,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 134
+      value: -14.29
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.3
+      value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3006,12 +3007,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b21bf56d3c89842b06bb9cfc31c552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   attackPoint: {fileID: 640543657}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
   attackRange: 0.5
-  atttackDamage: 40
+  attackDamage: 40
   attackRate: 2
 --- !u!114 &1135513125
 MonoBehaviour:
@@ -3219,14 +3221,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  sightRange: 3
-  patrolRadius: 13
+  detectionRange: 5
   attackRange: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  idleTime: 2
-  target: {fileID: 1135513122}
+  groundCheck: {fileID: 0}
+  groundCheckDistance: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  patrolPoints: []
+  patrolSpeed: 2
+  patrolWaitTime: 5
+  reachThreshold: 0.2
+  enemyAnimation: {fileID: 0}
 --- !u!114 &1145104040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3239,6 +3248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd937b1b37f08ee488af484654cd837d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  enemyAnimation: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
 --- !u!114 &1145104041
@@ -18709,7 +18720,7 @@ Transform:
   m_GameObject: {fileID: 1742152389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 134, y: 25.776001, z: -10}
+  m_LocalPosition: {x: -14.290001, y: -5.5839996, z: -10}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
