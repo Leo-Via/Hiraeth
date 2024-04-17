@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDataPersistence
 {
     public float maxHealth = 100f; // Maximum health of the player
     public float currentHealth;   // Current health of the player
@@ -27,6 +27,16 @@ public class PlayerHealth : MonoBehaviour
             Die(); // Call the Die() method if the player has no health remaining
 
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.currentHealth = data.currentHealth;
+    } 
+
+    public void SaveData(GameData data)
+    {
+        data.currentHealth = this.currentHealth;
     }
 
     //Update is called once per frame

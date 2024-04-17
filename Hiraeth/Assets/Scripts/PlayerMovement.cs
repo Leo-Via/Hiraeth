@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 
@@ -7,21 +10,19 @@ public class PlayerMovement : MonoBehaviour
 {
     AudioManager audioManager;
 
+    private bool isWallSliding;
+    private float wallSlidingSpeed = 2f;
+    private bool walledLeft = false;
+    private bool walledRight = false;
+    private Collider2D wall;
+    [SerializeField] private Transform wallCheckLeft;
+    [SerializeField] private Transform wallCheckRight;
+
+    [SerializeField] private LayerMask wallLayer;
+
     private void Awake()
     {
-        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
-        if (audioObject != null)
-        {
-            audioManager = audioObject.GetComponent<AudioManager>();
-            if (audioManager == null)
-            {
-                Debug.LogError("AudioManager component not found on object with tag 'Audio'");
-            }
-        }
-        else
-        {
-            Debug.LogError("No GameObject with tag 'Audio' found in the scene");
-        }
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public float moveSpeed = 5f; // Adjust this value to change the movement speed
@@ -35,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     private Animator animator; // Reference to the Animator component
 
-    [SerializeField] Transform groundCheckCollider;
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] private Transform groundCheckCollider;
+    [SerializeField] private LayerMask groundLayer;
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component attached to the player
         animator = GetComponent<Animator>(); // Get the Animator component attached to the player
     }
-
+   
     void Update()
     {
         // Get the horizontal input axis (left/right)
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         // Move the player horizontally
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        rb.velocity = new UnityEngine.Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
         // Flip the player's sprite if moving left
         if (horizontalInput < 0)
@@ -68,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         GroundCheck();
+        wallSlide();
 
         // Check for jump input
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical"))
@@ -76,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             // Jump if the player is grounded
             if (isGrounded)
             {
-                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new UnityEngine.Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
                 // Set 'IsJumping' parameter to true to transition to jump animation
                 animator.SetBool("IsJumping", true);
@@ -106,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
             // Trigger the attack animation in the Animator
             animator.SetTrigger("Attack");
         }
-
     }
 
     void GroundCheck()
@@ -121,7 +122,29 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.Log("Is Grounded: " + isGrounded);
         // As long as we are grounded the "IsJumping" bool
-        // in animator is disabled 
+        // in animator is disabled
         animator.SetBool("IsJumping", !isGrounded);
+    }
+
+    private bool isWalled(){
+        if(Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer)){
+            walledLeft = true;
+            wall = Physics2D.OverlapCircle(wallCheckLeft.position, 0.2f, wallLayer);
+        }
+        if(Physics2D.OverlapCircle(wallCheckRight.position, 0.2f, wallLayer)){
+            walledRight = true;
+            wall = Physics2D.OverlapCircle(wallCheckRight.position, 0.2f, wallLayer);
+        }
+        return walledLeft || walledRight;
+    }
+
+    private void wallSlide(){
+        if(isWalled() && !isGrounded){
+            isWallSliding = true;
+            rb.velocity = new UnityEngine.Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+        else{
+            isWallSliding = false;
+        }
     }
 }

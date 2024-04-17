@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 190120050}
   - component: {fileID: 190120053}
   - component: {fileID: 190120054}
+  - component: {fileID: 190120055}
   m_Layer: 0
   m_Name: Game Camera
   m_TagString: Untagged
@@ -364,6 +365,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 190120051}
+--- !u!114 &190120055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190120048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &222950371
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,9 +828,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1135513129}
-    - targetCorrespondingSourceObject: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1135513132}
   m_SourcePrefab: {fileID: 100100000, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
 --- !u!1 &587617835
 GameObject:
@@ -2002,19 +2044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  healthBar: {fileID: 0}
---- !u!114 &1135513132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135513121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa442fb7b1418443987717fe803175d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  healthBar: {fileID: 186748625}
 --- !u!1 &1145104036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
@@ -2702,8 +2732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3856d2afeab47e4e8072e4b14b4775a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1135513121}
-  respawnPoint: {fileID: 1312358309}
 --- !u!61 &1415831157
 BoxCollider2D:
   m_ObjectHideFlags: 0
