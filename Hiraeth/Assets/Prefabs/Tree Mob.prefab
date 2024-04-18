@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5095852308372409569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2521021467608761506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6780930543889531199}
+  m_Layer: 7
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6780930543889531199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521021467608761506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.034, y: -0.302, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5095852308372409569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5275956476433134785
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,12 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5240627280215370472}
   - component: {fileID: 616697700694861858}
-  - component: {fileID: 5360141313171614292}
-  - component: {fileID: 4764493925306922456}
-  - component: {fileID: 197298537266742320}
-  - component: {fileID: 6438213964914286011}
-  - component: {fileID: 863242721855406949}
-  - component: {fileID: 2296986671082229367}
   m_Layer: 7
   m_Name: Tree Mob
   m_TagString: Enemy
@@ -86,7 +111,7 @@ MonoBehaviour:
   wallCheck: {fileID: 6863334209450885546}
   ledgeCheck: {fileID: 2645989903811048160}
   playerCheck: {fileID: 953858126317801948}
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 6780930543889531199}
   idleStateData: {fileID: 11400000, guid: d68d8eecc92d9904eaf77f9fbaed95da, type: 2}
   moveStateData: {fileID: 11400000, guid: 7896cf80572a90b44a11d6ffb3342b03, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 219635b0323c7b24baf04668040aaafe, type: 2}
@@ -96,141 +121,6 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 933aaa8d7d691564ba88f5eb6470eeb8, type: 2}
   deadStateData: {fileID: 11400000, guid: 100cdd1fc1630c24d9c082aa1185aa15, type: 2}
   meleeAttackPosition: {fileID: 2317644209101348040}
---- !u!50 &5360141313171614292
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275956476433134785}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &4764493925306922456
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275956476433134785}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0069151563, y: 0.029337686}
-  m_Size: {x: 0.54048675, y: 0.6523827}
-  m_Direction: 0
---- !u!114 &197298537266742320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275956476433134785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f981461a261244381f89aface04378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  detectionRange: 5
-  attackRange: 2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheck: {fileID: 0}
-  groundCheckDistance: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  patrolPoints: []
-  patrolSpeed: 2
-  patrolWaitTime: 5
-  reachThreshold: 0.2
-  enemyAnimation: {fileID: 0}
---- !u!114 &6438213964914286011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275956476433134785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd937b1b37f08ee488af484654cd837d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  enemyAnimation: {fileID: 0}
-  maxHealth: 100
-  currentHealth: 0
---- !u!114 &863242721855406949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275956476433134785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fbdbd4ae7414f4ebb29efcbb1fccdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 2
-  attackDamage: 10
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &2296986671082229367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275956476433134785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b31cddff6d32464ead6e08701148da8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5675171277102980910
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +284,7 @@ Transform:
   - {fileID: 2645989903811048160}
   - {fileID: 953858126317801948}
   - {fileID: 2317644209101348040}
+  - {fileID: 6780930543889531199}
   m_Father: {fileID: 5240627280215370472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5538833901628763952

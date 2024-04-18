@@ -70,5 +70,10 @@ public class Enemy1 : Entity
         {
             stateMachine.ChangeState(stunState);
         }
+        else if (!CheckPlayerInMinAgroRange())
+        {
+            lookForPlayerState.SetTurnImmediately(true);
+            stateMachine.ChangeState(lookForPlayerState);
+        }
     }
 }

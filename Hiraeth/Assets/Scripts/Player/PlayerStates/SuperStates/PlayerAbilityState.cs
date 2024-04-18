@@ -12,9 +12,9 @@ public class PlayerAbilityState : PlayerState
     {
     }
 
-    public override void DoCheck()
+    public override void DoChecks()
     {
-        base.DoCheck();
+        base.DoChecks();
 
         isGrounded = player.CheckIfGrounded();
     }
@@ -35,9 +35,9 @@ public class PlayerAbilityState : PlayerState
     {
         base.LogicUpdate();
 
-        if(isAbilityDone)
+        if (isAbilityDone)
         {
-            if(isGrounded && player.CurrentVelocity.y < 0.01f)
+            if (isGrounded && player.CurrentVelocity.y < 0.01f)
             {
                 stateMachine.ChangeState(player.IdleState);
             }

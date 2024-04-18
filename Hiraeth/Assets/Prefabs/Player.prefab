@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 1575965884047795933}
   - component: {fileID: 8326555610158784979}
   - component: {fileID: 4617477150560890512}
-  - component: {fileID: 1750559391440721118}
-  - component: {fileID: 4135528100248039415}
   - component: {fileID: 3208637588903707913}
   - component: {fileID: 588446451594924939}
   - component: {fileID: 162595478926131446}
@@ -188,41 +186,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35587788, y: 0.8121516}
   m_EdgeRadius: 0
---- !u!114 &1750559391440721118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844378523184309243}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b21bf56d3c89842b06bb9cfc31c552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1575965884047795933}
-  attackPoint: {fileID: 4349465681550957913}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  attackRange: 0.55
-  attackDamage: 40
-  attackRate: 2
---- !u!114 &4135528100248039415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844378523184309243}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e16573073616daf4bb4ebd7d139890c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  healthBar: {fileID: 0}
 --- !u!114 &3208637588903707913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdd11d4cdd5935438c31786b08c683b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHoldTime: 0.2
 --- !u!114 &162595478926131446
 MonoBehaviour:
   m_ObjectHideFlags: 0
