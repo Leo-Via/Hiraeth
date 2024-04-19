@@ -1294,7 +1294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
       propertyPath: autoSaveTimeSeconds
-      value: 2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: initializeDataIfNull
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
