@@ -181,6 +181,7 @@ MonoBehaviour:
   MissAttack: {fileID: 8300000, guid: 14333dfe793f47c439762aed1b46ba9d, type: 3}
   Attack: {fileID: 8300000, guid: 85ebf10fee1c64043b048c77e1052f1a, type: 3}
   Jump: {fileID: 8300000, guid: 7b30cca5eb44d4f48aa5995527997bb4, type: 3}
+  TreeAttack: {fileID: 0}
 --- !u!1 &6052596842932412550
 GameObject:
   m_ObjectHideFlags: 0
