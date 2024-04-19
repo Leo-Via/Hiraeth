@@ -43,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: decor
+    uniqueID: 1821030953
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
