@@ -23474,7 +23474,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -25133,7 +25133,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335218, y: -0.000007054303}
+  m_ConnectedAnchor: {x: 0.30335218, y: -0.0000070901588}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -27156,7 +27156,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -27880,8 +27880,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1832482513}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: HomeClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -28754,7 +28754,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335313, y: -0.0000070780516}
+  m_ConnectedAnchor: {x: 0.30335313, y: -0.0000071139075}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

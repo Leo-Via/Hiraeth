@@ -1750,7 +1750,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6342,7 +6342,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.39291298, y: -0.0000011492521}
+  m_ConnectedAnchor: {x: 0.39291298, y: -0.0000011026859}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7691,7 +7691,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.37563765, y: 0.000003533437}
+  m_ConnectedAnchor: {x: 0.37563765, y: 0.0000035781404}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -9433,7 +9433,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.39246807, y: 0.00001195818}
+  m_ConnectedAnchor: {x: 0.3924681, y: 0.000011913477}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -31925,7 +31925,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335265, y: -0.0000070659444}
+  m_ConnectedAnchor: {x: 0.30335265, y: -0.000007102266}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -35290,7 +35290,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.33010128, y: 0.00001876615}
+  m_ConnectedAnchor: {x: 0.33010128, y: 0.000018727034}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -35846,7 +35846,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.3221638, y: 0.000004842878}
+  m_ConnectedAnchor: {x: 0.32216376, y: 0.000004805625}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -39584,6 +39584,14 @@ PrefabInstance:
     - target: {fileID: 6010026632666223095, guid: 7219c50fafea48248b175c658f99e0e7, type: 3}
       propertyPath: m_Name
       value: Canvas_Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107104499256428465, guid: 7219c50fafea48248b175c658f99e0e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107104499256428465, guid: 7219c50fafea48248b175c658f99e0e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HomeClicked
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

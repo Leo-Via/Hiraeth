@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameData
 {
     public long lastUpdated;
+
+    public string LevelNum;
     public float currentHealth;
     public Vector3 playerPosition;
 
@@ -13,7 +15,8 @@ public class GameData
     // the game starts with when there's no data to load
     public GameData() 
     {
+        LevelNum = "Level1";
         this.currentHealth = 100;
-        playerPosition = Vector3.zero;
+        playerPosition = Vector2.zero;
     }
 }
