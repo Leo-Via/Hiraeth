@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
-
+    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerSecondaryAttackState SecondaryAttackState { get; private set; }
     [SerializeField]
     private PlayerData playerData;
     #endregion
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Transform groundCheck;
+    public Transform attackPosition;
 
     #endregion
 
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        SecondaryAttackState = new PlayerSecondaryAttackState(this, StateMachine, playerData, "secondaryAttack");
     }
 
     private void Start()
@@ -108,6 +112,28 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Functions
+
+    public void AttackTrigger()
+    {
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, playerData.attackRadius, playerData.attackLayer);
+
+        foreach (Collider2D collider in detectedObjects)
+        {
+            if (collider.TryGetComponent(out Entity entity))
+            {
+                AttackDetails attackDetails = new AttackDetails
+                {
+                    damageAmount = playerData.attackDamage,
+                    stunDamageAmount = playerData.stunDamageAmount,
+                    position = transform.position
+                };
+
+                Debug.Log("Attacking enemy: " + entity.name);
+
+                entity.Damage(attackDetails);
+            }
+        }
+    }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 

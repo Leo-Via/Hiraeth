@@ -121,8 +121,12 @@ public class Entity : MonoBehaviour
     {
         lastDamageTime = Time.time;
 
+        Debug.Log("Enemy health before damage: " + currentHealth);
+
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
+
+        Debug.Log("Enemy health after damage: " + currentHealth);
 
         DamageHop(entityData.damageHopSpeed);
 
