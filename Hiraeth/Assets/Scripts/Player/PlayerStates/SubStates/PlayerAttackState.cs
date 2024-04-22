@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerAbilityState
 {
+    private AudioManager audioManager; // Add AudioManager reference
+
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public override void Enter()
     {
         base.Enter();
+        // Play jump sound effect
+        audioManager.PlaySFX(audioManager.Attack);
         Debug.Log("Attack parameter set to true");
     }
 

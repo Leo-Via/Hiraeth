@@ -3908,7 +3908,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: e0469bb98c3c4e140a392911df4057d2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8616352, g: 0.8616352, b: 0.8616352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5058,7 +5058,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8ef12a0f29c671c459656496d266347e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8616352, g: 0.8616352, b: 0.8616352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7073,7 +7073,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: cec99a34a70aefa4096b0ed576f0b6cc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8616352, g: 0.8616352, b: 0.8616352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7475,7 +7475,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 8aa5ce4c3d0500544963e79d68ec3efb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8616352, g: 0.8616352, b: 0.8616352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7803,7 +7803,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d0a23705200ebb74f8b8d14b977fb9c1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8616352, g: 0.8616352, b: 0.8616352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -33676,7 +33676,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: b90d63f005b84dd438b4dfa9ac993086, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8616352, g: 0.8616352, b: 0.8616352, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -41433,13 +41433,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1328478755553149368, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: m_Pitch
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328478755553149368, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328478755553149368, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e18d85d39ffa2840ae66040fdcf7c7f, type: 3}
+    - target: {fileID: 1328478755553149368, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.549
       objectReference: {fileID: 0}
     - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: Background
       value: 
-      objectReference: {fileID: 8300000, guid: aefedff2031f99444a2841dabe34207b, type: 3}
+      objectReference: {fileID: 8300000, guid: 3e18d85d39ffa2840ae66040fdcf7c7f, type: 3}
     - target: {fileID: 3409419911620779661, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.2826805
@@ -41483,6 +41495,10 @@ PrefabInstance:
     - target: {fileID: 5587606036645285423, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637354049925948006, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: m_Volume
+      value: 0.371
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

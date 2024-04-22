@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerJumpState : PlayerAbilityState
 {
     private int amountOfJumpsLeft;
+    private AudioManager audioManager; // Add AudioManager reference
 
     public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); // Initialize AudioManager
         amountOfJumpsLeft = playerData.amountOfJumps;
     }
 
@@ -15,6 +17,8 @@ public class PlayerJumpState : PlayerAbilityState
     {
         base.Enter();
 
+        // Play jump sound effect
+        audioManager.PlaySFX(audioManager.Jump);
         player.SetVelocityY(playerData.jumpVelocity);
         isAbilityDone = true;
         amountOfJumpsLeft--;
