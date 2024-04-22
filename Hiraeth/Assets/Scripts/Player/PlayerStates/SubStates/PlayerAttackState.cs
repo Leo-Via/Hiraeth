@@ -14,7 +14,6 @@ public class PlayerAttackState : PlayerAbilityState
     {
         base.Enter();
 
-        audioManager.PlaySFX(audioManager.Attack);
         Debug.Log("Attack parameter set to true");
 
         /*audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
