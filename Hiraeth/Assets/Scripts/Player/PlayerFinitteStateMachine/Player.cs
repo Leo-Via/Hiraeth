@@ -119,21 +119,43 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D collider in detectedObjects)
         {
-            if (collider.TryGetComponent(out Entity entity))
+            if (collider.gameObject.name == "Alive")
             {
-                AttackDetails attackDetails = new AttackDetails
+                Entity enemy = collider.gameObject.GetComponentInParent<Entity>();
+                if (enemy != null)
                 {
-                    damageAmount = playerData.attackDamage,
-                    stunDamageAmount = playerData.stunDamageAmount,
-                    position = transform.position
-                };
+                    AttackDetails attackDetails = new AttackDetails
+                    {
+                        damageAmount = playerData.attackDamage,
+                        stunDamageAmount = playerData.stunDamageAmount,
+                        position = transform.position
+                    };
 
-                Debug.Log("Attacking enemy: " + entity.name);
-
-                entity.Damage(attackDetails);
+                    enemy.Damage(attackDetails);
+                }
             }
         }
     }
+
+    public void Damage(AttackDetails attackDetails)
+    {
+        // Handle the damage logic for the player
+        // You can reduce the player's health, apply knockback, etc.
+        Debug.Log("Player received damage: " + attackDetails.damageAmount);
+
+        // Example of reducing player's health
+        float currentHealth = 100f; // Replace with your player's current health
+        currentHealth -= attackDetails.damageAmount;
+
+        // Example of applying knockback
+        Vector2 knockbackDirection = (Vector2)transform.position - attackDetails.position;
+        knockbackDirection.Normalize();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(knockbackDirection * 10f, ForceMode2D.Impulse);
+
+        // Additional damage handling logic...
+    }
+
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 

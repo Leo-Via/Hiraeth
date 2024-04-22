@@ -21,7 +21,7 @@ public class D_Entity : ScriptableObject
 
     public float closeRangeActionDistance = 1f;
 
-    public GameObject hitParticle;
+    //public GameObject hitParticle;
 
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
