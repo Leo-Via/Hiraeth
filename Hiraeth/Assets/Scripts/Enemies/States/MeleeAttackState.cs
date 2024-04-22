@@ -54,6 +54,11 @@ public class MeleeAttackState : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
+            Player player = collider.GetComponent<Player>();
+            if (player != null)
+            {
+                player.Damage(attackDetails);
+            }
             collider.transform.SendMessage("Damage", attackDetails);
         }
     }
