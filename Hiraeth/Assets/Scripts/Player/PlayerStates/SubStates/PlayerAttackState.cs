@@ -16,12 +16,12 @@ public class PlayerAttackState : PlayerAbilityState
 
         Debug.Log("Attack parameter set to true");
 
-        /*audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         if (audioManager != null)
         {
             audioManager.PlaySFX(audioManager.Attack);
-        }*/
+        }
     }
 
     public override void Exit()
