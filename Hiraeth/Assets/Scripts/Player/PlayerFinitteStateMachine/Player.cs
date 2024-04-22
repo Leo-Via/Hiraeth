@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
-
+    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerSecondaryAttackState SecondaryAttackState { get; private set; }
     [SerializeField]
     private PlayerData playerData;
     #endregion
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Transform groundCheck;
+    public Transform attackPosition;
 
     #endregion
 
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        SecondaryAttackState = new PlayerSecondaryAttackState(this, StateMachine, playerData, "secondaryAttack");
     }
 
     private void Start()
@@ -108,6 +112,50 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Functions
+
+    public void AttackTrigger()
+    {
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, playerData.attackRadius, playerData.attackLayer);
+
+        foreach (Collider2D collider in detectedObjects)
+        {
+            if (collider.gameObject.name == "Alive")
+            {
+                Entity enemy = collider.gameObject.GetComponentInParent<Entity>();
+                if (enemy != null)
+                {
+                    AttackDetails attackDetails = new AttackDetails
+                    {
+                        damageAmount = playerData.attackDamage,
+                        stunDamageAmount = playerData.stunDamageAmount,
+                        position = transform.position
+                    };
+
+                    enemy.Damage(attackDetails);
+                }
+            }
+        }
+    }
+
+    public void Damage(AttackDetails attackDetails)
+    {
+        // Handle the damage logic for the player
+        // You can reduce the player's health, apply knockback, etc.
+        Debug.Log("Player received damage: " + attackDetails.damageAmount);
+
+        // Example of reducing player's health
+        float currentHealth = 100f; // Replace with your player's current health
+        currentHealth -= attackDetails.damageAmount;
+
+        // Example of applying knockback
+        Vector2 knockbackDirection = (Vector2)transform.position - attackDetails.position;
+        knockbackDirection.Normalize();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(knockbackDirection * 10f, ForceMode2D.Impulse);
+
+        // Additional damage handling logic...
+    }
+
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 

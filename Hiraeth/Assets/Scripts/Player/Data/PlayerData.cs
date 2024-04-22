@@ -19,4 +19,11 @@ public class PlayerData : ScriptableObject
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public LayerMask whatIsGround;
+
+    [Header("Attack State")]
+    public float attackCooldown = 0.5f;
+    public float attackRadius = 1f;
+    public LayerMask attackLayer;
+    public float attackDamage = 10f;
+    public float stunDamageAmount = 0.5f;
 }

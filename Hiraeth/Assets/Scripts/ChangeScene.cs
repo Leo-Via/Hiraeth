@@ -1,12 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
+public class ChangeScene : MonoBehaviour 
 {
-    public void LoadScene(string sceneName)
+    public GameData data;
+    public void StartClicked(string sceneName)
     { 
-        SceneManager.LoadScene(sceneName);
+        DataPersistenceManager.instance.NewGame();
+
+        SceneManager.LoadSceneAsync("Level1");
+    }
+
+     public void LoadClicked() 
+    {
+        // save the game anytime before loading a new scene
+        DataPersistenceManager.instance.SaveGame();
+        // load the next scene - which will in turn load the game because of 
+        // OnSceneLoaded() in the DataPersistenceManager
+        string LevelNum = data.LevelNum;
+        SceneManager.LoadSceneAsync(LevelNum);
+    }
+
+    public void HomeClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -121,12 +121,16 @@ public class Entity : MonoBehaviour
     {
         lastDamageTime = Time.time;
 
+        Debug.Log("Enemy health before damage: " + currentHealth);
+
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
 
+        Debug.Log("Enemy health after damage: " + currentHealth);
+
         DamageHop(entityData.damageHopSpeed);
 
-        Instantiate(entityData.hitParticle, aliveGO.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+        //Instantiate(entityData.hitParticle, aliveGO.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
         if (attackDetails.position.x > aliveGO.transform.position.x)
         {

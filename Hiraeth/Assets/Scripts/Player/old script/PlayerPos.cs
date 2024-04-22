@@ -18,12 +18,13 @@ public class PlayerPos : MonoBehaviour, IDataPersistence
  
 	public void LoadData(GameData data)
 	{
-		this.gm.lastCheckPointPos = data.playerPosition;
+		this.transform.position = data.playerPosition;
 	}
 
 	public void SaveData(GameData data)
 	{
-		data.playerPosition = this.gm.lastCheckPointPos;
+		data.playerPosition = this.transform.position;
+        data.LevelNum = SceneManager.GetActiveScene().name;
 	}
 
 
