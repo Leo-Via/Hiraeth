@@ -16,7 +16,7 @@ public class ScenesManager : MonoBehaviour
             SceneManager.LoadSceneAsync("Level2");
         }
 
-        else
+        if (other.tag == "Player" && SceneManager.GetActiveScene().name == "Level2")
         {
             SceneManager.LoadSceneAsync("Level3");
         }
