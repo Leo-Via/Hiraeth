@@ -14,7 +14,7 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-        // Play jump sound effect
+
         audioManager.PlaySFX(audioManager.Attack);
         Debug.Log("Attack parameter set to true");
     }

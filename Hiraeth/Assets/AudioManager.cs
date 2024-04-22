@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip RunningOnGrass;
     public AudioClip MissAttack;
     public AudioClip Attack;
+    public AudioClip SecondAttack;
     public AudioClip Jump;
     public AudioClip TreeAttack;
 
