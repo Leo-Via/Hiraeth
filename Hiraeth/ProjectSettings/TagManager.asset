@@ -10,6 +10,7 @@ TagManager:
   - TeleporterEnd
   - GM
   - Checkpoint
+  - OpeningWall
   layers:
   - Default
   - TransparentFX
