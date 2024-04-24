@@ -2414,7 +2414,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 1135513122}
   m_Follow: {fileID: 1135513122}
   m_Lens:
     FieldOfView: 60
@@ -36865,18 +36865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e1c5200e685de4daeaee839db131ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal:
-    randomizeStart: 1
-    speedMultiplier: 0.6
-    type: 1
-    direction: 1
-    transformToFollow: {fileID: 1135513122}
-  vertical:
-    randomizeStart: 0
-    speedMultiplier: 0.6
-    type: 1
-    direction: 1
-    transformToFollow: {fileID: 1135513122}
 --- !u!1 &966678787
 GameObject:
   m_ObjectHideFlags: 3

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 193615100297940136}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.119, y: -0.027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -630089982, guid: 9b49ffe28bf35a2428a179f4a03b924c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.32, y: 0.25}
@@ -136,11 +136,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e89fd1bb95235274890ffbe5e70e8359, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &5395307171038052346
 BoxCollider2D:
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2443130198471976607}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e89fd1bb95235274890ffbe5e70e8359, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -183,7 +183,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0014318787, y: -0.04584285}
+  m_Offset: {x: 0.0014318824, y: -0.04751817}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -194,7 +194,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24264091, y: 0.1583143}
+  m_Size: {x: 0.24264091, y: 0.12979361}
   m_EdgeRadius: 0
 --- !u!95 &1035821444860181473
 Animator:
@@ -254,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 3249150638696634380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.164, y: -0.096, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 3744116242944578792}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.016, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,7 +300,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2441531205391578412}
-  m_Layer: 7
+  - component: {fileID: 4856093937046776693}
+  m_Layer: 8
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -323,6 +324,32 @@ Transform:
   - {fileID: 292111977503635318}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4856093937046776693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630116820798385336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5404d93593ab3ab47a5ba10751657f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityData: {fileID: 11400000, guid: 70c8b3b39f34a524798ff3dae9592ca8, type: 2}
+  wallCheck: {fileID: 2132344654154935306}
+  ledgeCheck: {fileID: 2947803651925586214}
+  playerCheck: {fileID: 3413976672002597882}
+  groundCheck: {fileID: 9085050654595957656}
+  idleStateData: {fileID: 11400000, guid: e3e1b9a9869cb224895b2ad0692eb791, type: 2}
+  moveStateData: {fileID: 11400000, guid: b689c28912234a94b8f7f74328b1a585, type: 2}
+  playerDetectedData: {fileID: 11400000, guid: 4cd1ea53132584d4b8ad948b0920597d, type: 2}
+  chargeStateData: {fileID: 11400000, guid: 1c3ead9980dd32640a10873b49c92ffb, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: 37b954fb558cdf6469a43a63f6f79a68, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: 59028871a419e4647858a811bc7ef2d8, type: 2}
+  stunStateData: {fileID: 11400000, guid: 36bf5d64e2dba6948ade659156b63df0, type: 2}
+  deadStateData: {fileID: 11400000, guid: 373ed41c1fcd23446944a1736e115084, type: 2}
+  meleeAttackPosition: {fileID: 6623032761656816896}
 --- !u!1 &7775590139420256137
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 7775590139420256137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0.003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -379,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 9116523631063766342}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.014, y: -0.135, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

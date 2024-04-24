@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public PlayerLandState LandState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerSecondaryAttackState SecondaryAttackState { get; private set; }
+    public PlayerDeadState DeadState { get; private set; }
     [SerializeField]
     private PlayerData playerData;
     #endregion
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
+    public float currentHealth;
 
     private Vector2 workspace;
     #endregion
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
         SecondaryAttackState = new PlayerSecondaryAttackState(this, StateMachine, playerData, "secondaryAttack");
+        DeadState = new PlayerDeadState(this, StateMachine, playerData, "dead");
     }
 
     private void Start()
@@ -61,6 +64,8 @@ public class Player : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
 
         FacingDirection = 1;
+        currentHealth = playerData.maxHealth;
+        Debug.Log("Player initial health: " + currentHealth);
 
         StateMachine.Initialize(IdleState);
     }
@@ -143,17 +148,22 @@ public class Player : MonoBehaviour
         // You can reduce the player's health, apply knockback, etc.
         Debug.Log("Player received damage: " + attackDetails.damageAmount);
 
-        // Example of reducing player's health
-        float currentHealth = 100f; // Replace with your player's current health
-        currentHealth -= attackDetails.damageAmount;
 
-        // Example of applying knockback
+        currentHealth -= attackDetails.damageAmount;
+        Debug.Log("Player took damage. Current health: " + currentHealth);
+
+        // applying knockback
         Vector2 knockbackDirection = (Vector2)transform.position - attackDetails.position;
         knockbackDirection.Normalize();
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.AddForce(knockbackDirection * 10f, ForceMode2D.Impulse);
 
         // Additional damage handling logic...
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            StateMachine.ChangeState(DeadState);
+        }
     }
 
 

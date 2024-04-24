@@ -9,8 +9,6 @@ public class PlayerSecondaryAttackState : PlayerAbilityState
 
     public PlayerSecondaryAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
-        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
     }
 
     public override void Enter()

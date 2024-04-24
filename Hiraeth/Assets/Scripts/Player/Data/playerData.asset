@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dacdc43700630f4d9df8326436faaa9, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
+  maxHealth: 100
   movementVelocity: 6
   jumpVelocity: 10
   amountOfJumps: 1
@@ -27,4 +28,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackDamage: 10
-  stunDamageAmount: 0.5
+  stunDamageAmount: 1

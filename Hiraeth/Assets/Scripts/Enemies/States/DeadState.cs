@@ -22,8 +22,11 @@ public class DeadState : State
 
         //GameObject.Instantiate(stateData.deathBloodParticle, entity.aliveGO.transform.position, stateData.deathBloodParticle.transform.rotation);
         //GameObject.Instantiate(stateData.deathChunkParticle, entity.aliveGO.transform.position, stateData.deathChunkParticle.transform.rotation);
+        entity.aliveGO.GetComponent<Collider2D>().enabled = false;
+        entity.aliveGO.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
-        entity.gameObject.SetActive(false);
+
+        //entity.gameObject.SetActive(false);
     }
 
     public override void Exit()

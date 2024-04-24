@@ -122,9 +122,13 @@ public class Entity : MonoBehaviour
         lastDamageTime = Time.time;
 
         Debug.Log("Enemy health before damage: " + currentHealth);
+        Debug.Log("Before damage: currentStunResistance = " + currentStunResistance);
 
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
+
+        Debug.Log("After damage: currentStunResistance = " + currentStunResistance);
+        Debug.Log("Stun damage amount: " + attackDetails.stunDamageAmount);
 
         Debug.Log("Enemy health after damage: " + currentHealth);
 
@@ -144,6 +148,7 @@ public class Entity : MonoBehaviour
         if (currentStunResistance <= 0)
         {
             isStunned = true;
+            Debug.Log("Enemy is stunned!");
         }
 
         if (currentHealth <= 0)
