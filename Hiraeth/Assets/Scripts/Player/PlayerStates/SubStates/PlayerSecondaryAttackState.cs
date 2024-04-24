@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSecondaryAttackState : PlayerAbilityState
 {
 
-    //private AudioManager audioManager;
+    private AudioManager audioManager;
 
     public PlayerSecondaryAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -17,6 +17,12 @@ public class PlayerSecondaryAttackState : PlayerAbilityState
 
        // audioManager.PlaySFX(audioManager.SecondAttack);
         Debug.Log("2nd Attack parameter set to true");
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.Attack);
+        }
     }
 
     public override void Exit()
