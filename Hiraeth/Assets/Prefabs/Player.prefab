@@ -139,7 +139,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &4617477150560890512
 BoxCollider2D:
@@ -309,6 +309,7 @@ MonoBehaviour:
   groundCheck: {fileID: 4092452446419638854}
   attackPosition: {fileID: 4349465681550957913}
   currentHealth: 0
+  damageCooldown: 1
 --- !u!1 &2642723568140099129
 GameObject:
   m_ObjectHideFlags: 0
