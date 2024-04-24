@@ -308,6 +308,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: e8eab502af0eb2841b7182a16e0fbdf6, type: 2}
   groundCheck: {fileID: 4092452446419638854}
   attackPosition: {fileID: 4349465681550957913}
+  currentHealth: 0
 --- !u!1 &2642723568140099129
 GameObject:
   m_ObjectHideFlags: 0

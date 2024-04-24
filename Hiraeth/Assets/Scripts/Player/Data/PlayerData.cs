@@ -29,4 +29,8 @@ public class PlayerData : ScriptableObject
     public LayerMask attackLayer;
     public float attackDamage = 10f;
     public float stunDamageAmount = 0.5f;
+
+    [Header("Knockback")]
+    public float knockbackStrength = 5f;
+    public float maxKnockbackSpeed = 5f;
 }

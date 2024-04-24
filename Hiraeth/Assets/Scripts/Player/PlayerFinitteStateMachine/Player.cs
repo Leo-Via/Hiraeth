@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
     public int FacingDirection { get; private set; }
     public float currentHealth;
 
+    public float damageCooldown = 1f; // Adjust the cooldown duration as needed
+    private float lastDamageTime;
+    private bool isInvincible;
+
     private Vector2 workspace;
     #endregion
 
@@ -145,6 +149,9 @@ public class Player : MonoBehaviour
     public void Damage(AttackDetails attackDetails)
     {
         // Handle the damage logic for the player
+        if (isInvincible)
+            return;
+
         // You can reduce the player's health, apply knockback, etc.
         Debug.Log("Player received damage: " + attackDetails.damageAmount);
 
@@ -153,10 +160,16 @@ public class Player : MonoBehaviour
         Debug.Log("Player took damage. Current health: " + currentHealth);
 
         // applying knockback
+        float knockbackStrength = playerData.knockbackStrength;
+        float maxKnockbackSpeed = playerData.maxKnockbackSpeed;
+
         Vector2 knockbackDirection = (Vector2)transform.position - attackDetails.position;
         knockbackDirection.Normalize();
+        Vector2 knockbackForce = knockbackDirection * knockbackStrength;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(knockbackDirection * 10f, ForceMode2D.Impulse);
+        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxKnockbackSpeed);
+
 
         // Additional damage handling logic...
         if (currentHealth <= 0)
@@ -164,8 +177,17 @@ public class Player : MonoBehaviour
             currentHealth = 0;
             StateMachine.ChangeState(DeadState);
         }
+
+        lastDamageTime = Time.time;
+        isInvincible = true;
+        StartCoroutine(DamageCooldownCoroutine());
     }
 
+    private IEnumerator DamageCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(damageCooldown);
+        isInvincible = false;
+    }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 
