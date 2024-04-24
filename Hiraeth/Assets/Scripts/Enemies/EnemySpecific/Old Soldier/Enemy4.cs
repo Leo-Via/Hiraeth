@@ -65,6 +65,7 @@ public class Enemy4 : Entity
         if (isDead)
         {
             stateMachine.ChangeState(deadState);
+            gameObject.tag = "Untagged";
         }
         else if (isStunned && stateMachine.currentState != stunState)
         {
