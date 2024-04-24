@@ -5,6 +5,7 @@ using UnityEngine;
 public class E4_MeleeAttackState : MeleeAttackState
 {
     private Enemy4 enemy;
+    private AudioManager audioManager;
 
     public E4_MeleeAttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, Enemy4 enemy) : base(etity, stateMachine, animBoolName, attackPosition, stateData)
     {
@@ -19,6 +20,12 @@ public class E4_MeleeAttackState : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.SoliderAttack);
+        }
+
     }
 
     public override void Exit()
