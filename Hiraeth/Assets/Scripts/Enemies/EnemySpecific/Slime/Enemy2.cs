@@ -66,6 +66,16 @@ public class Enemy2 : Entity
         {
             stateMachine.ChangeState(deadState);
             gameObject.tag = "Untagged";
+
+            GameObject aliveObject = transform.Find("Alive").gameObject;
+            if (aliveObject != null)
+            {
+                aliveObject.tag = "Untagged";
+            }
+            else
+            {
+                Debug.LogError("Alive child object not found on enemy: " + gameObject.name);
+            }
         }
         else if (isStunned && stateMachine.currentState != stunState)
         {

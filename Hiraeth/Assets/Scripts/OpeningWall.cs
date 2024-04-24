@@ -5,40 +5,52 @@ using UnityEngine.Tilemaps;
 
 public class OpeningWall : MonoBehaviour
 {
-    // Start is called before the first frame update
     GameObject play;
     GameObject[] enemies;
-
     GameObject w;
     TilemapRenderer ren;
     TilemapCollider2D c;
     CompositeCollider2D coll;
 
-    int numEnemies;
-
-
     void Start()
     {
         play = GameObject.FindGameObjectWithTag("Player");
         w = GameObject.FindGameObjectWithTag("OpeningWall");
+
+        if (w == null)
+        {
+            Debug.LogError("Opening Wall game object not found!");
+            return;
+        }
+
         ren = w.GetComponent<TilemapRenderer>();
         c = w.GetComponent<TilemapCollider2D>();
         coll = w.GetComponent<CompositeCollider2D>();
+
+        if (ren == null)
+        {
+            Debug.LogError("TilemapRenderer component not found on the Opening Wall game object!");
+        }
+
+        if (c == null)
+        {
+            Debug.LogError("TilemapCollider2D component not found on the Opening Wall game object!");
+        }
+
+        if (coll == null)
+        {
+            Debug.LogError("CompositeCollider2D component not found on the Opening Wall game object!");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        numEnemies = 0;
+        Debug.Log("Number of enemies found: " + enemies.Length);
 
-        for(int i = 0; i < enemies.Length; i++){
-            if(enemies[i].GetComponent<Enemy1>().getIsAlive() == true){
-                numEnemies++;
-            }
-        }
-
-        if(numEnemies  == 0){
+        if (enemies.Length == 0)
+        {
+            Debug.Log("No enemies found. Opening the wall...");
             ren.enabled = false;
             c.enabled = false;
             coll.enabled = false;
