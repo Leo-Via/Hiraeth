@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour 
+public class ChangeScene : MonoBehaviour
 {
     public GameData data;
     public void StartClicked(string sceneName)
@@ -20,8 +20,8 @@ public class ChangeScene : MonoBehaviour
         DataPersistenceManager.instance.SaveGame();
         // load the next scene - which will in turn load the game because of 
         // OnSceneLoaded() in the DataPersistenceManager
-        string LevelNum = data.LevelNum;
-        SceneManager.LoadSceneAsync(LevelNum);
+        Debug.Log(data.LevelNum);
+        SceneManager.LoadSceneAsync(data.LevelNum);
     }
 
     public void HomeClicked()
