@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Health")]
+    public float maxHealth = 100f;
+
     [Header("Move State")]
     public float movementVelocity = 10f;
 
@@ -26,4 +29,8 @@ public class PlayerData : ScriptableObject
     public LayerMask attackLayer;
     public float attackDamage = 10f;
     public float stunDamageAmount = 0.5f;
+
+    [Header("Knockback")]
+    public float knockbackStrength = 5f;
+    public float maxKnockbackSpeed = 5f;
 }
