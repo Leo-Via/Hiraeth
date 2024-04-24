@@ -1987,7 +1987,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010722893}
+  m_ConnectedAnchor: {x: 0.41579443, y: -0.0000010227227}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -24414,6 +24414,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: useEncryption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
       propertyPath: autoSaveTimeSeconds
       value: 5
       objectReference: {fileID: 0}
@@ -24423,6 +24427,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
       propertyPath: disableDataPersistence
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542038019511634372, guid: 2a56e23c9cb7a410194e9e292ec43869, type: 3}
+      propertyPath: overrideSelectedProfileId
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -27168,6 +27176,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 847858979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734860024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
+  m_PrefabInstance: {fileID: 1672225502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738438569
 GameObject:
   m_ObjectHideFlags: 0
@@ -27930,7 +27943,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.39291298, y: -0.0000011492521}
+  m_ConnectedAnchor: {x: 0.39291298, y: -0.0000011026859}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -29413,7 +29426,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.37563765, y: 0.000003533437}
+  m_ConnectedAnchor: {x: 0.37563765, y: 0.0000035781404}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -29676,6 +29689,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e1c5200e685de4daeaee839db131ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal:
+    randomizeStart: 0
+    speedMultiplier: 1
+    type: 0
+    direction: 0
+    transformToFollow: {fileID: 0}
+  vertical:
+    randomizeStart: 0
+    speedMultiplier: 1
+    type: 0
+    direction: 0
+    transformToFollow: {fileID: 0}
 --- !u!1 &932687304
 GameObject:
   m_ObjectHideFlags: 0
@@ -31332,7 +31357,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.39246807, y: 0.00001195818}
+  m_ConnectedAnchor: {x: 0.3924681, y: 0.000011913477}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -54463,7 +54488,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.30335265, y: -0.0000070659444}
+  m_ConnectedAnchor: {x: 0.30335265, y: -0.000007102266}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -57065,6 +57090,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 616751902}
     m_Modifications:
+    - target: {fileID: 162595478926131446, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
+      propertyPath: pHealth
+      value: 
+      objectReference: {fileID: 1858752253}
     - target: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -57112,7 +57141,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1858752253}
   m_SourcePrefab: {fileID: 100100000, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
 --- !u!1 &1683011500
 GameObject:
@@ -58071,7 +58103,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.33010128, y: 0.00001876615}
+  m_ConnectedAnchor: {x: 0.33010128, y: 0.000018727034}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -58775,7 +58807,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.3221638, y: 0.000004842878}
+  m_ConnectedAnchor: {x: 0.32216376, y: 0.000004805625}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -58816,6 +58848,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
   m_PrefabInstance: {fileID: 1672225502}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1858752253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734860024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16573073616daf4bb4ebd7d139890c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 1353626769}
 --- !u!1 &1860506584
 GameObject:
   m_ObjectHideFlags: 0
