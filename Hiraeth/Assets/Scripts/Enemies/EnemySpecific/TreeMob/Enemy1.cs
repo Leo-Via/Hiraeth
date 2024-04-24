@@ -18,7 +18,7 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_MoveState moveStateData;
     [SerializeField]
-    private D_PlayerDetected playerDetectedData;
+    private D_PlayerDetected playerDetectedData; 
     [SerializeField]
     private D_ChargeState chargeStateData;
     [SerializeField]
@@ -29,6 +29,8 @@ public class Enemy1 : Entity
     private D_StunState stunStateData;
     [SerializeField]
     private D_DeadState deadStateData;
+
+    [SerializeField] private bool isAlive = true;
 
 
     [SerializeField]
@@ -66,6 +68,7 @@ public class Enemy1 : Entity
         {
             stateMachine.ChangeState(deadState);
             gameObject.tag = "Untagged";
+            this.isAlive = false;
         }
         else if (isStunned && stateMachine.currentState != stunState)
         {
@@ -76,5 +79,9 @@ public class Enemy1 : Entity
             lookForPlayerState.SetTurnImmediately(true);
             stateMachine.ChangeState(lookForPlayerState);
         }
+    }
+
+    public bool getIsAlive(){
+        return isAlive;
     }
 }

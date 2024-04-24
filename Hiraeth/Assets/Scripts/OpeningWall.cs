@@ -14,6 +14,7 @@ public class OpeningWall : MonoBehaviour
     TilemapCollider2D c;
     CompositeCollider2D coll;
 
+    int numEnemies;
 
 
     void Start()
@@ -29,8 +30,15 @@ public class OpeningWall : MonoBehaviour
     void Update()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        numEnemies = 0;
 
-        if(enemies.Length == 0){
+        for(int i = 0; i < enemies.Length; i++){
+            if(enemies[i].GetComponent<Enemy1>().getIsAlive() == true){
+                numEnemies++;
+            }
+        }
+
+        if(numEnemies  == 0){
             ren.enabled = false;
             c.enabled = false;
             coll.enabled = false;

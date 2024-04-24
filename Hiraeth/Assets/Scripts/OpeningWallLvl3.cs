@@ -30,7 +30,7 @@ public class OpeningWallLvl3 : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if(enemies.Length == 1){
+        if(enemies.Length == 0){
             ren.enabled = false;
             c.enabled = false;
             coll.enabled = false;
