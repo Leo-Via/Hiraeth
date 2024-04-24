@@ -478,9 +478,11 @@ MonoBehaviour:
   RunningOnGrass: {fileID: 8300000, guid: 93a34b2e1d965224fb3069fa555e221b, type: 3}
   MissAttack: {fileID: 8300000, guid: 14333dfe793f47c439762aed1b46ba9d, type: 3}
   Attack: {fileID: 8300000, guid: 85ebf10fee1c64043b048c77e1052f1a, type: 3}
-  SecondAttack: {fileID: 0}
+  SecondAttack: {fileID: 8300000, guid: 2c8aa0e80dc74e443861f6567883cce4, type: 3}
   Jump: {fileID: 8300000, guid: 7b30cca5eb44d4f48aa5995527997bb4, type: 3}
-  TreeAttack: {fileID: 0}
+  TreeAttack: {fileID: 8300000, guid: f8a208a138c40a94e9b3e93abfaf593c, type: 3}
+  SlimeAttack: {fileID: 8300000, guid: f0e77fa7fe62cdb45a6c04c8c7a9fa8d, type: 3}
+  SoliderAttack: {fileID: 8300000, guid: a1b3f3988c2461a4abbe5f79ac0f9ae0, type: 3}
 --- !u!4 &90437267
 Transform:
   m_ObjectHideFlags: 0

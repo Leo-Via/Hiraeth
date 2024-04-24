@@ -18,6 +18,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip SecondAttack;
     public AudioClip Jump;
     public AudioClip TreeAttack;
+    public AudioClip SlimeAttack;
+    public AudioClip SoliderAttack;
 
     private void Start() 
     {

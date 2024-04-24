@@ -21,7 +21,7 @@ public class PlayerSecondaryAttackState : PlayerAbilityState
 
         if (audioManager != null)
         {
-            audioManager.PlaySFX(audioManager.Attack);
+            audioManager.PlaySFX(audioManager.SecondAttack);
         }
     }
 

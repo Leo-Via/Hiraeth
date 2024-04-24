@@ -80147,9 +80147,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 3e18d85d39ffa2840ae66040fdcf7c7f, type: 3}
     - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: TreeAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: f8a208a138c40a94e9b3e93abfaf593c, type: 3}
+    - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: SlimeAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: f0e77fa7fe62cdb45a6c04c8c7a9fa8d, type: 3}
+    - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: SecondAttack
       value: 
       objectReference: {fileID: 8300000, guid: 2c8aa0e80dc74e443861f6567883cce4, type: 3}
+    - target: {fileID: 1586277878533685450, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
+      propertyPath: SoliderAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: a1b3f3988c2461a4abbe5f79ac0f9ae0, type: 3}
     - target: {fileID: 3409419911620779661, guid: 774f30fdc00fc084fab9920f69552ff6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -59.6
