@@ -157,28 +157,31 @@ public class Player : MonoBehaviour
         // You can reduce the player's health, apply knockback, etc.
         Debug.Log("Player received damage: " + attackDetails.damageAmount);
 
-
         currentHealth -= attackDetails.damageAmount;
         pHealth.currentHealth -= attackDetails.damageAmount;
         Debug.Log("Player took damage. Current health: " + currentHealth);
 
-        // applying knockback
-        float knockbackStrength = playerData.knockbackStrength;
-        float maxKnockbackSpeed = playerData.maxKnockbackSpeed;
-
-        Vector2 knockbackDirection = (Vector2)transform.position - attackDetails.position;
-        knockbackDirection.Normalize();
-        Vector2 knockbackForce = knockbackDirection * knockbackStrength;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxKnockbackSpeed);
-
-
-        // Additional damage handling logic...
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             StateMachine.ChangeState(DeadState);
+        }
+        else
+        {
+            // Applying knockback
+            float knockbackStrength = playerData.knockbackStrength;
+            float maxKnockbackSpeed = playerData.maxKnockbackSpeed;
+            Vector2 knockbackDirection = (Vector2)transform.position - attackDetails.position;
+            knockbackDirection.Normalize();
+            Vector2 knockbackForce = knockbackDirection * knockbackStrength;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.AddForce(knockbackForce, ForceMode2D.Impulse);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxKnockbackSpeed);
+
+            // Apply counter force to reduce sliding
+            float counterForceMultiplier = playerData.counterForceMultiplier;
+            Vector2 counterForce = knockbackDirection * counterForceMultiplier;
+            rb.AddForce(counterForce, ForceMode2D.Impulse);
         }
 
         lastDamageTime = Time.time;

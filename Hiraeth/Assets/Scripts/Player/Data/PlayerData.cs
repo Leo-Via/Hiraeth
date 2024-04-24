@@ -33,4 +33,5 @@ public class PlayerData : ScriptableObject
     [Header("Knockback")]
     public float knockbackStrength = 5f;
     public float maxKnockbackSpeed = 5f;
+    public float counterForceMultiplier = 10f;
 }
