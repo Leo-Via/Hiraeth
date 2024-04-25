@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3208637588903707913}
   - component: {fileID: 588446451594924939}
   - component: {fileID: 162595478926131446}
+  - component: {fileID: 6263341289033569045}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -305,11 +306,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e063605e0732e4c89b361d746edc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pHealth: {fileID: 6263341289033569045}
   playerData: {fileID: 11400000, guid: e8eab502af0eb2841b7182a16e0fbdf6, type: 2}
   groundCheck: {fileID: 4092452446419638854}
   attackPosition: {fileID: 4349465681550957913}
   currentHealth: 0
   damageCooldown: 1
+--- !u!114 &6263341289033569045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844378523184309243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16573073616daf4bb4ebd7d139890c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
 --- !u!1 &2642723568140099129
 GameObject:
   m_ObjectHideFlags: 0

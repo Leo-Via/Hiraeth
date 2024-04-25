@@ -23,7 +23,7 @@ public class EB_MeleeAttackState : MeleeAttackState
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         if (audioManager != null)
         {
-            audioManager.PlaySFX(audioManager.SlimeAttack);
+            audioManager.PlaySFX(audioManager.BossAttack);
         }
 
     }
