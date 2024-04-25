@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4109,7 +4113,7 @@ Transform:
   m_GameObject: {fileID: 230426977}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.9645, y: 8.114811, z: -11.1448345}
+  m_LocalPosition: {x: -44.1678, y: -19.574175, z: -11.1448345}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11888,7 +11892,7 @@ Transform:
   m_GameObject: {fileID: 577474909}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.9645, y: 8.114811, z: -11.1448345}
+  m_LocalPosition: {x: -44.1678, y: -19.574175, z: -11.1448345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44040,6 +44044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47126,6 +47134,10 @@ PrefabInstance:
     - target: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
       propertyPath: m_Name
       value: Tree Mob (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275956476433134785, guid: 14fd1c32f21ae514d85ac143e437bb70, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68463,6 +68475,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Old Soldier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 44359974372009017, guid: 685b2de83bc81d04aab8cb3b30971ef4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5831671831717305044, guid: 685b2de83bc81d04aab8cb3b30971ef4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.146702
@@ -69772,13 +69788,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 844378523184309243, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -96.6967
+      value: -79.9
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.488987
+      value: -8.2
       objectReference: {fileID: 0}
     - target: {fileID: 4962486871551192755, guid: 5c011051a55630d448dbdf37cc8fa50e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -73791,7 +73811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4325fac3d77eb39449d7a79a43a596b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckPointPos: {x: -33.27, y: 27.08}
+  lastCheckPointPos: {x: -79.9, y: -8.2}
 --- !u!4 &1761726785
 Transform:
   m_ObjectHideFlags: 0
@@ -74117,11 +74137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa31c7c45f930f6489327b8699f7104b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    lastUpdated: 0
-    LevelNum: Level1
-    currentHealth: 100
-    playerPosition: {x: 0, y: 0, z: 0}
+  Position: {x: 0, y: 0}
 --- !u!114 &1780829074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76408,6 +76424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Old Soldier
       objectReference: {fileID: 0}
+    - target: {fileID: 44359974372009017, guid: 685b2de83bc81d04aab8cb3b30971ef4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 520256339526899627, guid: 685b2de83bc81d04aab8cb3b30971ef4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.96
@@ -76726,6 +76746,10 @@ PrefabInstance:
     - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
       propertyPath: m_Name
       value: Slime (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

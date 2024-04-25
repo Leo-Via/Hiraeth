@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip SoliderDeath;
     public AudioClip BossAttack;
     public AudioClip BossDeath;
-
+    public AudioClip BossDetect;
 
 
     private void Start() 
