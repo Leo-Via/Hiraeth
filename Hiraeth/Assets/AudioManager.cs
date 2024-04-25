@@ -17,12 +17,16 @@ public class AudioManager : MonoBehaviour
     public AudioClip Attack;
     public AudioClip SecondAttack;
     public AudioClip Jump;
+    public AudioClip Death;
     public AudioClip TreeAttack;
     public AudioClip TreeDeath;
     public AudioClip SlimeAttack;
     public AudioClip SlimeDeath;
     public AudioClip SoliderAttack;
+    public AudioClip SoliderDeath;
     public AudioClip BossAttack;
+    public AudioClip BossDeath;
+
 
 
     private void Start() 

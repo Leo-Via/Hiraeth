@@ -182,12 +182,15 @@ MonoBehaviour:
   Attack: {fileID: 8300000, guid: 85ebf10fee1c64043b048c77e1052f1a, type: 3}
   SecondAttack: {fileID: 8300000, guid: 2c8aa0e80dc74e443861f6567883cce4, type: 3}
   Jump: {fileID: 8300000, guid: 7b30cca5eb44d4f48aa5995527997bb4, type: 3}
+  Death: {fileID: 8300000, guid: 17accf8be087cda429cf6f0e15950a0e, type: 3}
   TreeAttack: {fileID: 8300000, guid: f8a208a138c40a94e9b3e93abfaf593c, type: 3}
   TreeDeath: {fileID: 8300000, guid: bbad74dfc94d8054ba4101425596db57, type: 3}
   SlimeAttack: {fileID: 8300000, guid: f0e77fa7fe62cdb45a6c04c8c7a9fa8d, type: 3}
   SlimeDeath: {fileID: 8300000, guid: bad3869bf0249714dab62750f4681684, type: 3}
   SoliderAttack: {fileID: 8300000, guid: a1b3f3988c2461a4abbe5f79ac0f9ae0, type: 3}
+  SoliderDeath: {fileID: 8300000, guid: 463bb62d46b9b304391ecbe2c5d64a07, type: 3}
   BossAttack: {fileID: 8300000, guid: 0448b1ae6ee83fd4d99fd534d6cff661, type: 3}
+  BossDeath: {fileID: 8300000, guid: fbe70705f0094004ba548128bbd68e03, type: 3}
 --- !u!1 &6052596842932412550
 GameObject:
   m_ObjectHideFlags: 0
