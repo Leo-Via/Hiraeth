@@ -22768,6 +22768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23298,6 +23302,10 @@ PrefabInstance:
     - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
       propertyPath: m_Name
       value: Slime (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28717,6 +28725,10 @@ PrefabInstance:
     - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
       propertyPath: m_Name
       value: Slime (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52217,6 +52229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59233,6 +59249,10 @@ PrefabInstance:
     - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
       propertyPath: m_Name
       value: Slime (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630116820798385336, guid: 3b6d6b597e4e6cf468031d8141d9a367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
