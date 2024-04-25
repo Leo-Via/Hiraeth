@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    private float initialBounce = 14.5f;
+    private float initialBounce = 17.5f;
     private float bounceMultiplier = 1.425f; // Multiplier for increasing bounce height on subsequent interactions
     private int interactions = 0; // Number of times the player has interacted with the JumpPad
     private int maxInteractions = 2; // Maximum number of interactions allowed

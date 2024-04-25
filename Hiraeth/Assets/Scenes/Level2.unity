@@ -28794,14 +28794,14 @@ MonoBehaviour:
   horizontal:
     randomizeStart: 0
     speedMultiplier: 1
-    type: 0
-    direction: 0
+    type: 1
+    direction: 1
     transformToFollow: {fileID: 1858752245}
   vertical:
     randomizeStart: 0
     speedMultiplier: 1
-    type: 0
-    direction: 0
+    type: 1
+    direction: 1
     transformToFollow: {fileID: 1858752245}
 --- !u!1 &932687304
 GameObject:
