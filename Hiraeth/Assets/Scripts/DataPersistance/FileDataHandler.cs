@@ -84,6 +84,7 @@ public class FileDataHandler
         // base case - if the profileId is null, return right away
         if (profileId == null) 
         {
+            Debug.Log("File not written");
             return;
         }
 
@@ -110,6 +111,7 @@ public class FileDataHandler
                 using (StreamWriter writer = new StreamWriter(stream)) 
                 {
                     writer.Write(dataToStore);
+                    Debug.Log("File Written");
                 }
             }
 

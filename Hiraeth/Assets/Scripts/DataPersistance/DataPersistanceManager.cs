@@ -134,6 +134,7 @@ public class DataPersistenceManager : MonoBehaviour
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects) 
         {
             dataPersistenceObj.LoadData(gameData);
+            Debug.Log("Data Pushed");
         }
     }
 
@@ -163,6 +164,7 @@ public class DataPersistenceManager : MonoBehaviour
 
         // save that data to a file using the data handler
         dataHandler.Save(gameData, selectedProfileId);
+        Debug.Log("Data Saving");
     }
 
     private void OnApplicationQuit() 
