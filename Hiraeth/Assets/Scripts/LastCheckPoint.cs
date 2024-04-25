@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LastCheckPoint : MonoBehaviour, IDataPersistence
 {
-    private static LastCheckPoint instance;
+    public static LastCheckPoint instance { get; private set; }
     public Vector2 lastCheckPointPos;
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance);
+            DontDestroyOnLoad(gameObject);
         }
         else {
             Destroy(gameObject);

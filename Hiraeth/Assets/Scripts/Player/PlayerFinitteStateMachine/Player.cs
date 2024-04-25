@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
+    public float MaxHealth => playerData.maxHealth;
     public float currentHealth;
 
     public float damageCooldown = 1f; // Adjust the cooldown duration as needed
